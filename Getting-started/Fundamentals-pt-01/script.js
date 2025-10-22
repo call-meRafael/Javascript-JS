@@ -47,7 +47,7 @@
 //         lines`
 // );
 
-const age = 15;
+/* const age = 15;
 
 
 if (age >= 18) {
@@ -64,4 +64,8 @@ if (birthYear <= 2000) {
 } else {
     century = '21';
 }
-console.log(century);
+console.log(century); */
+
+
+const age = 18;
+if (age === 18) console.log('You are old enough to drive!');

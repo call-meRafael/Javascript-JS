@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Javascript Fundamentals - Part 1</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
             height: 100dvh;
             display: flex;
@@ -25,6 +30,21 @@
                 padding: 1.875rem;
                 text-align: center;
 
+                animation: move 2s ease-in-out alternate;
+                transition: all 0.5s ease-in-out;
+
+            }
+        }
+
+        @keyframes move {
+            from {
+                transform: translateY(100px);
+                opacity: 0.5;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+                scale: 0.8;
             }
         }
     </style>
