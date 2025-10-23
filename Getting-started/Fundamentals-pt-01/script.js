@@ -67,5 +67,28 @@ if (birthYear <= 2000) {
 console.log(century); */
 
 
-const age = 18;
-if (age === 18) console.log('You are old enough to drive!');
+// const age = 18;
+// if (age === 18) console.log('You are old enough to drive!');
+
+const hasDriversLicense = true;
+const hasGoodVision = true;
+
+console.log(hasDriversLicense && hasGoodVision);
+console.log(hasDriversLicense || hasGoodVision);
+console.log(!hasDriversLicense);
+
+// const shouldDrive = hasDriversLicense && hasGoodVision;
+// if (shouldDrive) {
+//     console.log('Sarah is able to drive!');
+// } else {
+//     console.log('Someone else should drive...');
+// }
+
+const isTired = false;
+console.log(hasDriversLicense && hasGoodVision && isTired);
+
+if (hasDriversLicense && hasGoodVision && !isTired) {
+    console.log('Sarah is able to drive!');
+} else {
+    console.log('Sarah is tired and need a break...');
+}
