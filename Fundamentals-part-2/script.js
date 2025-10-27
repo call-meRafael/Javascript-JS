@@ -11,7 +11,7 @@ if (hasDriversLicense) console.log('I can drive!'); */
 
 
 // Functions
-
+/*
 
 function logger() { // function declaration without parameters
     console.log('My name is Rafael');
@@ -28,12 +28,28 @@ function fruitProcessor(apples, oranges) { // function declaration with paramete
     return juice;
 }
 
-const appleJuice = fruitProcessor(5, 0); /* our variable appleJuice will store the value returned from the function fruitProcessor when we call it with 5 apples and 0 oranges as arguments */
+const appleJuice = fruitProcessor(5, 0); /* our variable appleJuice will store the value returned from the function fruitProcessor when we call it with 5 apples and 0 oranges as arguments */ /*
 console.log(appleJuice);
 
 const appleOrangeJuice = fruitProcessor(2, 4);
 console.log(appleOrangeJuice);
 
+*/
 
 
 
+// Function declaration
+function calcAge1(birthYear) {
+    return 2025 - birthYear;
+}
+
+const age1 = calcAge1(1992);
+console.log(age1);
+
+// Function expression
+const calcAge2 = function (birthYear) {
+    return 2025 - birthYear;
+}
+
+const age2 = calcAge2(1992);
+console.log(age1, age2);
