@@ -12,6 +12,7 @@ if (hasDriversLicense) console.log('I can drive!'); */
 
 // Functions
 
+
 function logger() { // function declaration without parameters
     console.log('My name is Rafael');
 }
@@ -32,3 +33,7 @@ console.log(appleJuice);
 
 const appleOrangeJuice = fruitProcessor(2, 4);
 console.log(appleOrangeJuice);
+
+
+
+
