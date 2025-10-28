@@ -96,6 +96,7 @@ console.log(fruitProcessor(2, 3));
 
 
 // Reviewing functions
+/*
 const calcAge = function (birthYear) {
     return 2025 - birthYear;
 }
@@ -115,3 +116,6 @@ const yearsUntilRetirement = function (birthYear, firstName) {
 
 console.log(yearsUntilRetirement(1992, 'Rafael'));
 console.log(yearsUntilRetirement(1950, 'Satoru'));
+
+*/
+
