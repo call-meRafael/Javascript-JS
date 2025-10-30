@@ -75,7 +75,7 @@ console.log(verificarIdade(10));
 
 
 
-
+/*
 // 1 - Crie uma função que receba dois números e retorne a subtração do segundo pelo primeiro.
 
 function subtrair(first, second) {  // Função declarada com dois parâmetros.
@@ -194,3 +194,44 @@ const tipoTriangulo = function (a, b, c) {
 console.log(tipoTriangulo(3, 3, 3));
 console.log(tipoTriangulo(3, 3, 5));
 console.log(tipoTriangulo(3, 4, 5));
+
+
+*/
+
+
+// 1 - Crie uma função que recee um número e retorne uma string informando se é "positivo", "negativo" ou "zero".
+
+function classificarNumero (numero) {
+    if (numero > 0) {
+        return 'Positivo';
+    } else if (numero < 0) {
+        return 'Negativo';
+    } else if (numero === 0){
+        return 'Zero';
+    } else if (typeof numero !== 'number') {
+        return 'Entrada invalida! Por favor, insira um número.';
+    } 
+}
+
+console.log(classificarNumero(10));
+console.log(classificarNumero(-5));
+console.log(classificarNumero(0));
+
+
+
+// 2 - Crie uma função que recebe a idade e retorna true se for maior de 18 anos, false se não.
+const checkIdade = 16;
+function podeDirigir (idade) {
+    typeof idade === 'number' && idade >= 0;
+    if (idade >= 18) {
+        console.log(`${checkIdade} anos`)
+        return true;
+    } else {
+        console.log(`${checkIdade < 18 ? 'Não pode dirigir!' : 'pode dirigir!' }`)
+        return false;
+    }
+       
+}
+
+
+console.log(podeDirigir(checkIdade));
