@@ -173,7 +173,69 @@ console.log(drink2);
 console.log(`I like to drink ${age >= 18 ? 'wine 🍷' : 'water 🫗'}`);
 
 */
-
+/*
 const bill = 275;
 const tip = bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.20;
 console.log(`The bill was ${bill}, the tip was ${tip}, and the total value was ${bill + tip}`);
+*/
+
+/*
+function fruitProcessor(apples, oranges) {
+    console.log(apples, oranges);
+    const juice = `Juice with ${apples} apples and ${oranges} oranges.`;
+    return juice;
+}
+
+const appleJuice = fruitProcessor(5, 0);
+console.log(appleJuice);
+
+const appleOrangeJuice = fruitProcessor(2, 4);
+console.log(appleOrangeJuice);
+*/
+/*
+function calcAge1(birthYear) {
+    return 2025 - birthYear;
+}
+const age1 = calcAge1(1992);
+console.log(age1);
+
+
+
+const calcAge2 = function (birthYear) {
+    return 2025 - birthYear;
+}
+
+const age2 = calcAge2(1992);
+console.log(age2);
+*/
+/*
+const calcAge3 = birthYear => 2025 - birthYear;
+const age3 = calcAge3(1992);
+console.log(age3);
+
+const yearsUntilRetirement = (birthYear, firstName) => {
+    const age = 2025 - birthYear;
+    const retirement = 65 - age;
+    //return retirement;
+    return `${firstName} retires in ${retirement} years.`;
+}
+
+console.log(yearsUntilRetirement(1992, 'Rafael'));
+console.log(yearsUntilRetirement(1997, 'Milena'));
+*/
+
+
+
+function cutFruitPieces(fruit) {
+    return fruit * 4;
+}
+function fruitProcessor(apples, oranges) {
+
+    const applePieces = cutFruitPieces(apples);  // Aqui a função 'cutFruitPieces' está sendo chamada dentro da função 'fruitProcessor' e recebe o valor do parâmetro 'apples' que substitui o parâmetro 'fruit' na função 'cutFruitPieces' como argumento, que por sua vez recebe o valor *2* na chamada da função 'fruitProcessor'. Podemos então concluir que a variável 'applePieces' irá receber o valor resultante da fórmula "apples(2) * 4(valor fixo da função curtFruitPieces)".
+    const orangePieces = cutFruitPieces(oranges); // // // // // // // // ⬆️
+
+    const juice = `Juice with ${applePieces} pieces of apple and ${orangePieces} pieces of orange.`;
+    return juice; // Aqui a função 'fruitProcessor' retorna a variável 'juice' que contém uma string formatada com os valores das variáveis 'applePieces' e 'orangePieces'
+}
+
+console.log(fruitProcessor(2, 3)); // chamada dos parâmetros *apples recebe o valor: 2* e *oranges recebe o valor: 3* da função

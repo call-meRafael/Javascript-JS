@@ -198,7 +198,7 @@ console.log(tipoTriangulo(3, 4, 5));
 
 */
 
-
+/*
 // 1 - Crie uma função que recee um número e retorne uma string informando se é "positivo", "negativo" ou "zero".
 
 function classificarNumero (numero) {
@@ -235,3 +235,27 @@ function podeDirigir (idade) {
 
 
 console.log(podeDirigir(checkIdade));
+*/
+
+
+
+
+// Crie uma função que recebe dois números e retorne o valor absoluto da diferença entre eles(sempre positivo).
+
+function diferencaAbsoluta (primeiro, segundo) {
+    return Math.abs(primeiro - segundo);
+}
+
+console.log(diferencaAbsoluta(3, 7));
+
+
+
+
+// Crie uma função que receba base e altura, retorne a área (base * altura).
+
+const calcularArea = function (base, altura) {
+    console.log(`A área de um retângulo de base ${base} e altura ${altura} é: ${base * altura}`)
+    return base * altura;
+}
+
+console.log(calcularArea(4, 5));
