@@ -121,7 +121,7 @@ console.log(yearsUntilRetirement(1950, 'Satoru'));
 
 
 // Arrays
-
+/*
 const friend1 = 'Jarbson';
 const friend2 = 'Carlos';
 const friend3 = 'Max';
@@ -143,3 +143,26 @@ console.log(age1, age2, age3);
 
 const ages = [calcAge(years[0]), calcAge(years[1]), calcAge(years[years.length - 1])];
 console.log(ages);
+*/
+
+const friends = ['Jarbson', 'Carlos', 'Max'];
+friends.push('Milena');
+console.log(friends);
+
+friends.unshift('Jefferson');
+console.log(friends);
+
+// friends.pop();
+const lastFriend = friends.pop();
+console.log(friends, lastFriend);
+
+const firstFriendOffset = friends.shift();
+console.log(friends, firstFriendOffset);
+
+
+
+console.log(friends.indexOf('Jarbson'));
+
+if (friends.includes('Carlos')) {
+    console.log('Carlos is in the friends list!');
+}
