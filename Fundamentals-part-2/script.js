@@ -144,7 +144,7 @@ console.log(age1, age2, age3);
 const ages = [calcAge(years[0]), calcAge(years[1]), calcAge(years[years.length - 1])];
 console.log(ages);
 */
-
+/*
 const friends = ['Jarbson', 'Carlos', 'Max'];
 friends.push('Milena');
 console.log(friends);
@@ -166,3 +166,51 @@ console.log(friends.indexOf('Jarbson'));
 if (friends.includes('Carlos')) {
     console.log('Carlos is in the friends list!');
 }
+*/
+
+/*
+const calcTip = function (bill) {
+    if (bill >= 50 && bill <= 300) {
+        return `Your bill was ${bill.toLocaleString('us-US', {style: 'currency', currency: 'USD'})} and the tip is ${(bill * 0.15).toLocaleString('us-US', {style: 'currency', currency: 'USD'})}. Your total bill is ${(bill + (bill * 0.15)).toLocaleString('us-US', {style: 'currency', currency: 'USD'})}`;
+    } else {
+        return `Your bill was ${bill.toLocaleString('us-US', {style: 'currency', currency: 'USD'})} and the tip is ${(bill * 0.20).toLocaleString('us-US', {style: 'currency', currency: 'USD'})}. Your total bill is ${(bill + (bill * 0.20)).toLocaleString('us-US', {style: 'currency', currency: 'USD'})}`;
+    }
+}
+const bills = [125, 555, 44];
+const tips = [calcTip(125), calcTip(555), calcTip(44)];
+
+
+console.log(bills, tips);
+console.log(calcTip(40));
+
+*/
+
+/*
+// .slice() and .splice()
+
+const letters = ['A', 'B', 'C', 'D'];
+const letters2 = letters.slice(-2);
+const letters3 = letters.slice(0, -1);
+console.log(letters, letters2, letters3);
+
+const removeLetters = letters.splice(2, 1);
+console.log(removeLetters);
+
+*/
+
+function customMessage(name) {
+    const fruits = ['apple', 'banana', 'orange'];
+    fruits.push('pineapple');
+    console.log(fruits);
+    const message = `Hello ${name}! I'm Rafael, a Javascript developer.`;
+    return `${message}  Would you like to drink a juice of ${fruits[3]} with me?`;
+}
+
+console.log(customMessage('Milena'));
+
+
+
+// const fruits = ['apple', 'banana', 'orange'];
+// console.log(fruits);
+// fruits.push('pineapple');
+// console.log(fruits);

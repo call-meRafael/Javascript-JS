@@ -239,7 +239,7 @@ console.log(podeDirigir(checkIdade));
 
 
 
-
+/*
 // Crie uma função que recebe dois números e retorne o valor absoluto da diferença entre eles(sempre positivo).
 
 function diferencaAbsoluta (primeiro, segundo) {
@@ -259,3 +259,6 @@ const calcularArea = function (base, altura) {
 }
 
 console.log(calcularArea(4, 5));
+
+*/
+
