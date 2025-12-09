@@ -198,6 +198,7 @@ console.log(removeLetters);
 
 */
 
+/*
 function customMessage(name) {
     const fruits = ['apple', 'banana', 'orange'];
     fruits.push('pineapple');
@@ -209,8 +210,7 @@ function customMessage(name) {
 console.log(customMessage('Milena'));
 
 
+*/
 
-// const fruits = ['apple', 'banana', 'orange'];
-// console.log(fruits);
-// fruits.push('pineapple');
-// console.log(fruits);
+
+
