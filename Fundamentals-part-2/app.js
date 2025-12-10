@@ -1,3 +1,4 @@
+
 // Crie uma função que receba dois números e retorne sua soma, incentivando você a refletir sobre como funções podem encapsular operações simples e reutilizáveis.
 
 const resultado = function soma(num1, num2) {
@@ -137,3 +138,4 @@ let verficarSuprimentos = (suprimentos) => {
 }
 
 console.log(verficarSuprimentos(suprimentos));
+

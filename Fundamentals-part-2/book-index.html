@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queu control panel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100dvh;
+            background: hsl(0, 0%, 65%);
+            margin-inline: center;
+            display: grid;
+            place-content: center;
+        }
+
+        #hero-field {
+            display: flex;
+            gap: 1rem;
+            flex-flow: column wrap;
+            justify-content: center;
+            align-items: center;
+            max-width: 600px;
+            padding: 2rem;
+            background: hsl(98, 40%, 45%);
+            text-align: center;
+
+            & h1 {
+                color: white;
+                font-size: 3rem;
+            }
+
+            & label {
+                font-size: 2rem;
+                font-weight: bolder;
+            }
+
+            & input {
+                max-width: 50%;
+                font-size: 1.5rem;
+                padding: .5rem;
+                border: none;
+                border-radius: .425rem;
+            }
+
+            & button {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+                font-weight: 900;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                border-radius: 100px;
+                border: none;
+
+                &:hover {
+                    background: hsl(8, 70%, 55%);
+                }
+            }
+        }
+    </style>
+</head>
+<body>
+    <section id="hero-field">
+        <h1>Get your tickets here</h1>
+        <label for="iName">First Name</label>
+        <input type="text" name="name" id="iName">
+        
+        <button type="submit" class="line-enter">Get in line</button>
+        <button type="button" class="next-customer">Next Client</button>
+        <pre>Line Position:</pre>
+    </section>
+
+
+    <script src="book-app.js"></script>
+</body>
+</html>
