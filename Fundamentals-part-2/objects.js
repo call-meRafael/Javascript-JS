@@ -83,7 +83,7 @@ console.log(milena.getSummary());
 
 
 */
-
+/*
 const mark = {
     fullName: 'Mark Miller',
     mass: 78,
@@ -114,3 +114,121 @@ if (mark.bmi > john.bmi) {
 } else if (john.bmi > mark.bmi) {
     console.log(`${john.fullName}'s BMI (${john.bmi}) is higher than ${mark.fullName}'s BMI which is (${mark.bmi})!`);
 }
+
+*/
+
+
+// const rafael = {
+//     firstName: 'Rafael',
+//     lastName: 'Araujo',
+//     birthYear: 1992,
+//     job: 'Web Developer',
+//     hobbies: ['Coding', 'Reading', 'Gaming'],
+//     hasDriversLicense: false,
+
+//     // calcAge: function (birthYear) {
+//     //     return 2025 - birthYear;
+//     // }
+
+//     // calcAge: function () {
+//     //     // console.log(this);
+//     //     return 2025 - this.birthYear;
+//     // }
+
+//     calcAge: function () {
+//       this.age = 2025 - this.birthYear;
+//       return this.age;
+//     }
+// };
+
+// console.log(rafael.calcAge());
+// console.log(rafael.age);
+
+// challenge
+
+// const milena = {
+//     fullName: 'Milena Araujo',
+//     birthYear: 1997,
+//     job: 'store clerk',
+//     hasDriversLicense: false,
+//     tvShows: ['Dark', 'Game of Thrones', 'Breaking Bad'],
+
+//     calcAge: function () {
+//         this.age = 2025 - this.birthYear;
+//         return this.age;
+//     },
+
+//     getSummary: function () {
+
+//         return `${this.fullName} is a ${this.calcAge()}-years old ${this.job}, and she has ${this.hasDriversLicense ? 'a' : 'no'} driver's license. She really thinks that these are the best TV shows of all time: ${this.tvShows.join(', ')}. Her all time favorite TV show are ${this.tvShows[0]}, from Netflix.`;
+//     }
+// };
+// // console.log(milena.calcAge());
+// console.log(milena.getSummary());
+
+/*
+const listaDePacientes = [];
+
+const rafael = {
+    fullName: 'Rafael Araujo',
+    statusPresente: true
+};
+
+const milena = {
+    fullName: 'Milena Araujo',
+    statusPresente: false
+};
+
+function registrarPaciente(lista, paciente) {
+
+    // Caso 1: lista vazia
+    if (lista.length === 0) {
+        lista.push(paciente);
+        return;
+    }
+
+    // Caso 2: verificar primeira posição
+    if (lista[0].nome === paciente.nome) {
+        lista[0].status = paciente.status;
+        return;
+    }
+
+    // Caso 3: não encontrado
+    lista.push(paciente);
+}
+
+console.log(listaDePacientes, rafael)
+*/
+
+
+/* ------- LOOPs ------- */
+
+// console.log('Lifting weights repetition 1');
+// console.log('Lifting weights repetition 2');
+// console.log('Lifting weights repetition 3');
+// console.log('Lifting weights repetition 4');
+// console.log('Lifting weights repetition 5');
+// console.log('Lifting weights repetition 6');
+// console.log('Lifting weights repetition 7');
+// console.log('Lifting weights repetition 8');
+// console.log('Lifting weights repetition 9');
+// console.log('Lifting weights repetition 10');
+
+// for (let rep = 1; rep <= 10; rep++) {
+//     console.log(`lifting weights repetition ${rep}`);
+// };
+
+const listaDeAcesso = []; // Array inicialmente vazio para armazenar pessoas com acesso à sala especial.
+function checarIdade(rafael) {
+    if (rafael.idade >= 18) {
+        listaDeAcesso.unshift(rafael);
+    }
+}
+const rafael = {
+    nomeCompleto: 'Rafael Araujo',
+    idade: 2025 - 1992,
+    status: ""
+};
+
+
+console.log(listaDeAcesso);
