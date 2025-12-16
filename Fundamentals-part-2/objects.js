@@ -218,17 +218,259 @@ console.log(listaDePacientes, rafael)
 //     console.log(`lifting weights repetition ${rep}`);
 // };
 
+/*
 const listaDeAcesso = []; // Array inicialmente vazio para armazenar pessoas com acesso à sala especial.
-function checarIdade(rafael) {
-    if (rafael.idade >= 18) {
-        listaDeAcesso.unshift(rafael);
+function checarAcesso(listaDeAcesso, rafael, milena) {
+    if (rafael.idade >= 18 || milena.idade >= 18) {
+        listaDeAcesso.unshift(rafael), listaDeAcesso.push(milena);
+        return listaDeAcesso;
+    }
+} 
+
+const rafael = {
+    nome: 'Rafael',
+    idade: 2025 - 1992,
+    status: function () {
+        if (this.idade >= 18) {
+            return `${this.nome} está apto para entrar na sala especial!`;
+        } else {
+            return `${this.nome} não pode adentrar na sala especial!`;
+        }
+    }
+};
+const milena = {
+    nome: 'Milena',
+    idade: 2025 - 1997,
+    status: function () {
+        if (this.idade >= 18) {
+            return `${this.nome} está apta para entrar na sala especial!`;
+        } else {
+            return `${this.nome} não pode adentrar na sala especial!`;
+        }
+    }
+};
+console.log(rafael.status());
+console.log(milena.status());
+console.log(checarAcesso(listaDeAcesso, rafael, milena));
+*/
+
+
+/*
+const listaDeAcesso = []; // Array inicialmente vazio para armazenar pessoas com acesso à sala especial.
+function checarNomeNaLista(listaDeAcesso, nomeCompleto) {
+    if (listaDeAcesso.includes(nomeCompleto)) {
+        return `${nomeCompleto} já possui acesso à sala especial!`;
     }
 }
+
+function extrairNomes(listaDeAcesso) {
+    const nomes = [];
+
+    if (listaDeAcesso.length >= 1) {
+        nomes.unshift(listaDeAcesso[0].nomeCompleto);
+    }
+
+    if (listaDeAcesso.length >= 2) {
+        nomes.push(listaDeAcesso[1].nomeCompleto);
+    }
+
+    return nomes;
+}
+
+function controlarAcesso(listaDeAcesso, pessoa) {
+    const nomesAtuais = extrairNomes(listaDeAcesso);
+
+    if (checarNomeNaLista(nomesAtuais, pessoa.nomeCompleto)) {
+        return `${pessoa.nomeCompleto} já existe na lista de acesso!`;
+    }
+
+    const entradaGarantida = pessoa.status()
+    ? `Acesso permitido para ${pessoa.nomeCompleto}!`
+    : `Acesso negado para ${pessoa.nomeCompleto}!`;
+
+    if (entradaGarantida === `Acesso permitido para ${pessoa.nomeCompleto}!`) {
+        listaDeAcesso.unshift(pessoa);
+    }
+
+    return entradaGarantida;
+}
+
 const rafael = {
     nomeCompleto: 'Rafael Araujo',
     idade: 2025 - 1992,
-    status: ""
+
+    status: function () {
+        if (this.idade >= 18) {
+            return `${this.nomeCompleto} possui ${this.idade} anos, portanto está apto para entrar na sala especial!`;
+        }
+    }
+};
+const mila = {
+    nomeCompleto: 'Milena Araujo',
+    idade: 2025 - 1997,
+
+    status: function () {
+        if (this.idade >= 18) {
+            return `${this.nomeCompleto} possui ${this.idade} anos, portanto está apta para entrar na sala especial!`;
+        }
+    }
+}
+
+console.log(rafael.status());
+console.log(mila.status());
+
+console.log(controlarAcesso(listaDeAcesso, rafael));
+console.log(controlarAcesso(listaDeAcesso, mila));
+*/
+
+
+
+
+/*
+const registroDeLivrosEmprestados = [];
+
+function extrairNomes(registroDeLivrosEmprestados) {
+    const nomes = [];
+
+    if (registroDeLivrosEmprestados.length >= 1) {
+        nomes.unshift(registroDeLivrosEmprestados[0].nome);
+    }
+
+    if (registroDeLivrosEmprestados.length >= 2) {
+        nomes.push(registroDeLivrosEmprestados[1].nome);
+    }
+
+    return nomes;
+}
+
+function verificarClienteRegistrado(registroDeLivrosEmprestados, nome) {
+    if (registroDeLivrosEmprestados.includes(nome)) {
+        return `O cliente ${nome} já possui um livro emprestado!`;
+    }
+}
+
+function emprestarLivro(registroDeLivrosEmprestados, nome) {
+    if (!verificarClienteRegistrado(registroDeLivrosEmprestados, nome)) {
+        registroDeLivrosEmprestados.unshift(rafael.nome);
+    }
+}
+
+function controlarEmprestimo(registroDeLivrosEmprestados, nome) {
+    const nomesAtuais = extrairNomes(registroDeLivrosEmprestados);
+
+    if (verificarClienteRegistrado(nomesAtuais, nome.nome)) {
+        return `${nome.nome} já possui um empréstimo ativo!`;
+    }
+
+    const mensagemAoCliente = nome.aptoParaEmprestimo()
+    ? `${nome.nome} teve um empréstimo de 7 dias aprovado!`
+    : `${nome.nome} teve o empréstimo negado!`;
+
+    if (nome.aptoParaEmprestimo()) {
+        registroDeLivrosEmprestados.push(nome);
+    }
+    return mensagemAoCliente;
+}
+
+
+const rafael = {
+    nome: 'Rafael',
+    idade: 2025 - 1992,
+
+    aptoParaEmprestimo: function () {
+        return this.idade >= 18;
+    },
+
+    sumarioCliente: function () {
+        return this.aptoParaEmprestimo() 
+        ? `${this.nome} está apto para um empréstimo por 7 dias!`
+        : `${this.nome} não esta apto para nossos serviços de empréstimo!`;
+    }
+};
+const milena = {
+    nome: 'Milena',
+    idade: 2025 - 1997,
+
+    aptoParaEmprestimo: function () {
+        return this.idade >= 18;
+    },
+
+    sumarioCliente: function () {
+        return this.aptoParaEmprestimo() 
+        ? `${this.nome} está apta para um empréstimo por 7 dias!`
+        : `${this.nome} não esta apta para nossos serviços de empréstimo!`;
+    }
+};
+console.log(rafael.sumarioCliente());
+console.log(milena.sumarioCliente());
+console.log(controlarEmprestimo(registroDeLivrosEmprestados, rafael))
+*/
+
+
+
+const listaDoEvento = [];
+
+//Verifica se o nome já está na lista do evento
+function checarNomeNaLista(listaDoEvento, nomeCompleto) {
+    return listaDoEvento.includes(nomeCompleto);
+}
+
+function adicionarNomeNaLista(listaDoEvento, nomeCompleto) {
+
+    const nomeListado = checarNomeNaLista(listaDoEvento, nomeCompleto);
+    if (!nomeListado) {
+
+        listaDoEvento.push(nomeCompleto)
+        
+    }
 };
 
 
-console.log(listaDeAcesso);
+
+
+const rafael = {
+    nomeCompleto: 'Rafael Araujo',
+    idade: 2025 - 1992,
+
+    aptoParaEvento: function () {
+        return this.idade >= 18;
+    },
+
+    getSumario: function () {
+        return this.aptoParaEvento()
+        ? `${this.nomeCompleto} pode participar do evento!`
+        : `${this.nomeCompleto} não pode participar do evento! Sentimos muito.`;
+    }
+};
+const milena = {
+    nomeCompleto: 'Milena Araujo',
+    idade: 2025 - 1997,
+
+    aptoParaEvento: function () {
+        return this.idade >= 18;
+    },
+
+    getSumario: function () {
+        return this.aptoParaEvento()
+        ? `${this.nomeCompleto} pode participar do evento!`
+        : `${this.nomeCompleto} não pode participar do evento! Sentimos muito.`;
+    }
+};
+console.log(adicionarNomeNaLista(listaDoEvento, rafael));
+console.log(checarNomeNaLista(listaDoEvento, rafael));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
