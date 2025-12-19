@@ -1,3 +1,4 @@
+/*
 const listaDeAcesso = [];
 const limiteMaximo = 3;
 
@@ -128,3 +129,103 @@ console.log(controlarAcessoParaSala(listaDeAcesso, milena));
 console.log(controlarAcessoParaSala(listaDeAcesso, george));
 console.log(controlarAcessoParaSala(listaDeAcesso, richy));
 console.log(controlarAcessoParaSala(listaDeAcesso, lilly));
+
+*/
+/*
+// ===== Paridade de cores =====
+const cores = ['vermelho', 'azul', 'verde'];
+function trocaDeCores(cores) {
+    if (cores % 2 !== 0) {
+        cores.push('branco');
+    }
+    
+}
+console.log(cores, trocaDeCores(cores));
+// ======================================= //
+
+// ===== Limite superior ===== //
+const novasCores = ['vermelho', 'azul', 'verde', 'amarelo', 'rosa', 'roxo', 'marrom'];
+function acrescentarCorSe(novasCores) {
+    if (novasCores.length > 6) {
+        novasCores.unshift('preto');
+    } 
+}
+console.log(novasCores, acrescentarCorSe(novasCores));
+// ======================================= //
+
+
+
+
+// ===== Orquestração mínima ===== //
+const arcoIris = ['vermelho', 'azul', 'verde', 'amarelo', 'rosa', 'roxo'];
+function paridadeDeCores(arcoIris) {
+    if (arcoIris.length % 2 !== 0) {
+
+    }
+}
+
+function limiteSuperior(arcoIris) {
+    if (arcoIris.length > 6) {
+
+    }
+}
+function controlarMovimentoDeCores(arcoIris) {
+    const checarParidade = paridadeDeCores(arcoIris);
+    const checarLimite = limiteSuperior(arcoIris);
+
+    if (checarParidade !== true) {
+        arcoIris.push('branco');
+    }
+    
+    if (checarLimite !== false) {
+        arcoIris.unshift('preto');
+    }
+    
+    if (arcoIris.length >= 8) {
+
+        return true;
+    } else {
+        return false;
+    }
+    
+}
+console.log(arcoIris,controlarMovimentoDeCores(arcoIris));
+// ======================================= //
+
+*/
+
+const listaDeAcesso = [];
+const limiteDaSala = 5;
+
+function checarIdade(pessoa) {
+    return pessoa.idade >= 18;
+}
+
+function checarPresencaNaLista(listaDeAcesso, pessoa) {
+    return listaDeAcesso.includes(pessoa);
+}
+
+function checarLimiteDeAcesso(listaDeAcesso) {
+    return listaDeAcesso.length < limiteDaSala;
+}
+
+function controlarAcessoNaSala(listaDeAcesso, pessoa) {
+    if (checarIdade(pessoa) && checarLimiteDeAcesso(listaDeAcesso) && !checarPresencaNaLista(listaDeAcesso, pessoa)) {
+        listaDeAcesso.unshift(pessoa);
+        return true;
+    }
+    return false;
+}
+
+
+const rafael = {
+    nome: 'Rafael',
+    idade: 2025 - 1992
+};
+
+const milena = {
+    nome: 'Milena',
+    idade: 2025 - 1997
+};
+
+console.log(listaDeAcesso, controlarAcessoNaSala(listaDeAcesso, rafael));
