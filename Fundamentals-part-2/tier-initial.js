@@ -194,6 +194,7 @@ console.log(arcoIris,controlarMovimentoDeCores(arcoIris));
 
 */
 
+/*
 const listaDeAcesso = [];
 const limiteDaSala = 5;
 
@@ -229,3 +230,274 @@ const milena = {
 };
 
 console.log(listaDeAcesso, controlarAcessoNaSala(listaDeAcesso, rafael));
+
+*/
+
+/*
+const sistemaDaBalada = {
+    filaDeEspera: [],
+    listaVip: ['Saul', 'Kim', 'Mike'],
+
+    baladaAberta: function () {
+        return true;
+    },
+
+    adicionarNaFila: function (nome, vip) {
+        const prioritario = this.listaVip.includes(nome);
+
+        if (!filaDeEspera.includes(prioritario)) {
+            return this.filaDeEspera.unshift(nome);
+        }
+
+
+    }
+
+
+}
+console.log(sistemaDaBalada, this.adicionarNaFila('Saul'));
+*/
+/*
+function cutFruitPieces(fruit) {
+    return fruit * 4;
+}
+
+function fruitProcessor(apples, oranges) {
+    const applePieces = cutFruitPieces(apples);
+    const orangePieces = cutFruitPieces(oranges);
+
+    const juice = `Juice with ${applePieces} piece of apples nad ${orangePieces} piece of oranges.`;
+    return juice;
+}
+console.log(fruitProcessor(2, 3));
+*/
+/*
+const livrosEmprestados = [];
+const limiteDeEmprestimos = 3;
+
+function verificarLivroJaEmprestado(livrosEmprestados, livro) {
+    return livrosEmprestados.includes(livro);
+}
+
+const verificarLimite = (livrosEmprestados, limiteMaximo) => {
+    return livrosEmprestados.length < limiteMaximo;
+}
+
+function controlarEmprestimo(verificarLivroJaEmprestado, livro, limiteMaximo) {
+
+    if (!verificarLivroJaEmprestado(livrosEmprestados, livro) && verificarLimite(livrosEmprestados, limiteMaximo)) {
+        livrosEmprestados.push(livro);
+        return true;
+    } else {
+        return false;
+    }
+}
+
+console.log(controlarEmprestimo(verificarLivroJaEmprestado, 'Código Limpo', limiteDeEmprestimos));
+*/
+
+// ========================= Laboratório ========================== //
+/*
+const pessoasNoLaboratorio = [];
+const limiteDePessoas = 2;
+
+function verificarMaiorIdade(pessoa) {
+    return pessoa.idade >= 18;
+}
+
+function verificarPresenca(lista, pessoa) {
+    return lista.includes(pessoa);
+}
+
+function verificarDisponibilidade(lista, limite) {
+    return lista.length < limite;
+}
+
+function controlarEntrada(lista, pessoa, limite) {
+    const checarIdade = verificarMaiorIdade(pessoa);
+    const checarPresenca = verificarPresenca(lista, pessoa);
+    const checarDisponibilidade = verificarDisponibilidade(lista, limite);
+
+    if (checarIdade && checarDisponibilidade && !checarPresenca) {
+        lista.unshift(pessoa);
+        return true;
+    }
+    return false;
+}
+
+const rafael = {
+    nome: 'Rafael',
+    idade: 2025 - 1992
+};
+
+const milena = {
+    nome: 'Milena',
+    idade: 2025 - 1997
+};
+
+const george = {
+    nome: 'George',
+    idade: 2025 - 2013
+};
+
+console.log(pessoasNoLaboratorio, controlarEntrada(pessoasNoLaboratorio, rafael, limiteDePessoas));
+console.log(controlarEntrada(pessoasNoLaboratorio, george, limiteDePessoas));
+*/
+
+
+//================== Controle de empréstimo simples =============== //
+/*
+const equipamentosEmprestados = [];
+const limiteMaximo = 4;
+
+function verificarEquipamentoJaEmprestado(lista, equipamento) {
+    return lista.includes(equipamento);
+}
+
+function verificarLimiteDeEmprestimo(lista, limiteMaximo) {
+    return lista.length < limiteMaximo;
+}
+
+function controlarEquipamentosEmprestados(lista, equipamento, limiteMaximo) {
+
+    const checarEquipamentoEmprestado = verificarEquipamentoJaEmprestado(lista, equipamento);
+
+    const checarLimite = verificarLimiteDeEmprestimo(lista, limiteMaximo);
+
+    if (!checarEquipamentoEmprestado && checarLimite) {
+        lista.push(equipamento)
+        return true;
+    }
+    return false;
+}
+
+console.log(equipamentosEmprestados, controlarEquipamentosEmprestados(equipamentosEmprestados, 'Notebook', limiteMaximo));
+console.log(equipamentosEmprestados, controlarEquipamentosEmprestados(equipamentosEmprestados, 'Smart TV', limiteMaximo));
+console.log(equipamentosEmprestados, controlarEquipamentosEmprestados(equipamentosEmprestados, 'Headphones', limiteMaximo));
+console.log(equipamentosEmprestados, controlarEquipamentosEmprestados(equipamentosEmprestados, 'Playstation 5', limiteMaximo));
+console.log(equipamentosEmprestados, controlarEquipamentosEmprestados(equipamentosEmprestados, 'Google VR', limiteMaximo));
+*/
+
+
+
+
+// ================== Controle de Cadastro ======================= //
+const cadastroNoClube = [];
+const limiteMaximo = 5;
+
+function jaCadastrado(lista, pessoa) {
+    return lista.includes(pessoa);
+}
+
+function haVagas(lista, limiteMaximo) {
+    return lista.length < limiteMaximo;
+}
+
+function entradaNoClube(lista, pessoa, limiteMaximo) {
+    const existeCadastro = jaCadastrado(lista, pessoa);
+    const disponibilidadeDeVagas = haVagas(lista, limiteMaximo);
+    const verificarMaiorIdade = pessoa.checarMaiorIdade();
+
+    if (verificarMaiorIdade && !existeCadastro && disponibilidadeDeVagas) {
+        lista.push(pessoa);
+        return true;
+    }
+    return false;
+
+    // if (!verificarMaiorIdade) return false;
+    // if (existeCadastro) return false;
+    // if (!disponibilidadeDeVagas) return false;
+
+    // lista.push(pessoa);
+    // return true;
+}
+
+
+
+
+const rafael = {
+    nome: 'Rafael',
+    idade: 2025 - 1992,
+
+    checarMaiorIdade: function () {
+        return this.idade >= 18;
+    }
+};
+
+const milena = {
+    nome: 'Milena',
+    idade: 2025 - 1997,
+
+    checarMaiorIdade: function () {
+        return this.idade >= 18;
+    }
+};
+
+const george = {
+    nome: 'George',
+    idade: 2025 - 2015,
+
+    checarMaiorIdade: function () {
+        return this.idade >= 18;
+    }
+};
+const richy = {
+    nome: 'Richard',
+    idade: 2025 - 2012,
+
+    checarMaiorIdade: function () {
+        return this.idade >= 18;
+    }
+};
+const marge = {
+    nome: 'Margareth',
+    idade: 2025 - 2012,
+
+    checarMaiorIdade: function () {
+        return this.idade >= 18;
+    }
+};
+const dick = {
+    nome: 'Dick',
+    idade: 2025 - 1964,
+
+    checarMaiorIdade: function () {
+        return this.idade >= 18;
+    }
+};
+const jack = {
+    nome: 'Jack',
+    idade: 2025 - 1984,
+
+    checarMaiorIdade: function () {
+        return this.idade >= 18;
+    }
+};
+const julian = {
+    nome: 'Julian',
+    idade: 2025 - 1994,
+
+    checarMaiorIdade: function () {
+        return this.idade >= 18;
+    }
+};
+const pennywise = {
+    nome: 'Pennywise',
+    idade: 2025 - 1908,
+
+    checarMaiorIdade: function () {
+        return this.idade >= 18;
+    }
+};
+
+
+
+
+console.log(cadastroNoClube, entradaNoClube(cadastroNoClube, rafael, limiteMaximo));
+console.log(cadastroNoClube, entradaNoClube(cadastroNoClube, milena, limiteMaximo));
+console.log(cadastroNoClube, entradaNoClube(cadastroNoClube, george, limiteMaximo));
+console.log(cadastroNoClube, entradaNoClube(cadastroNoClube, richy, limiteMaximo));
+console.log(cadastroNoClube, entradaNoClube(cadastroNoClube, marge, limiteMaximo));
+console.log(cadastroNoClube, entradaNoClube(cadastroNoClube, dick, limiteMaximo));
+console.log(cadastroNoClube, entradaNoClube(cadastroNoClube, jack, limiteMaximo));
+console.log(cadastroNoClube, entradaNoClube(cadastroNoClube, julian, limiteMaximo));
+console.log(cadastroNoClube, entradaNoClube(cadastroNoClube, pennywise, limiteMaximo));
