@@ -577,34 +577,57 @@ console.log(itensEmprestados, controleDeItens(itensEmprestados, dick, 'Smart TV'
 
 */
 
-
+//========= Sistema de Lâmpada inteligente ========= //
 const lampadaInteligente = {
     ligada: false,
     corAtual: 'Branca',
 
     interruptor: function () {
-        if (!this.ligada) {
-            this.ligada = true;
-        }
-        return this.ligada
-            ? 'Lâmpada acesa!'
-            : 'Lâmpada apagada!';
+        this.ligada = !this.ligada;
+
+        return this.ligada ? 'Lâmpada acesa!' : 'Lâmpada apagada!';
     },
 
     alterarCor: function (novaCor) {
-        if (this.ligada === true) {
+        if (this.ligada) {
+
             this.corAtual = novaCor;
-        } else {
-            return 'Ligue a lâmpada primeiro!';
-        }
-        return this.corAtual 
-            ? `A nova cor da luz é: (${this.corAtual})`
-            : 'A lâmpada não está acesa!'
+        } 
+        return `A nova cor da luz é: (${this.corAtual}).`;
         
     },
 
     situacao: function () {
-        return `A lâmpada está ${this.ligada ? 'acesa' : 'apagada'}, cor atual: (${this.corAtual}).`;
+        return `A lâmpada está ${this.ligada ? 'acesa' : 'apagada'}, a cor recentemente alterada é: (${this.corAtual}).`;
     }
 }
 console.log(lampadaInteligente, lampadaInteligente.interruptor(), lampadaInteligente.alterarCor('Vermelha'), lampadaInteligente.situacao());
+
+
+
+// ========== Sistema de inventário limitado ========= //
+const mochilaDoHeroi = {
+    itens: ['Poção', 'Mapa'],
+    capacidadeMaxima: 5,
+
+    coletarItem: function (item) {
+        
+        if (this.itens.length >= this.capacidadeMaxima) return 'Mochila cheia! Não é possível coletar mais itens.';
+
+        if (this.itens.includes(item)) return 'O herói já possui esse item.';
+
+        this.itens.push(item);
+        return `O herói coletou o item: (${item})!`;
+    },
+
+    usarItem: function (item) {
+
+        const index = this.itens.indexOf(item);
+        if (index === -1) return 'O herói não possui esse item!'
+
+        this.itens.shift();
+        return `O herói usou o item: (${item})!`;
+    }
+
+}
+console.log(mochilaDoHeroi, mochilaDoHeroi.coletarItem('Poção'), mochilaDoHeroi.usarItem('Poção'), mochilaDoHeroi.coletarItem('Espada Sagrada'), mochilaDoHeroi.coletarItem('Escudo Aegis'), mochilaDoHeroi.coletarItem('Armadura de Cronos'), mochilaDoHeroi.coletarItem('Elmo do Matador de Deuses'), mochilaDoHeroi.coletarItem('Botas Aladas de Rah'));
