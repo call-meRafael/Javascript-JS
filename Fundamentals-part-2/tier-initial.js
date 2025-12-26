@@ -381,6 +381,7 @@ console.log(equipamentosEmprestados, controlarEquipamentosEmprestados(equipament
 
 
 // ================== Controle de Cadastro ======================= //
+/*
 const cadastroNoClube = [];
 const limiteMaximo = 5;
 
@@ -501,3 +502,109 @@ console.log(cadastroNoClube, entradaNoClube(cadastroNoClube, dick, limiteMaximo)
 console.log(cadastroNoClube, entradaNoClube(cadastroNoClube, jack, limiteMaximo));
 console.log(cadastroNoClube, entradaNoClube(cadastroNoClube, julian, limiteMaximo));
 console.log(cadastroNoClube, entradaNoClube(cadastroNoClube, pennywise, limiteMaximo));
+
+*/
+
+
+// ================== Emprétimo por pessoa ======================= //
+/*
+const itensEmprestados = [];
+const limiteMaximoDeItens = 2;
+
+const checarMaiorIdade = (pessoa) => pessoa.hasMaiorIdade();
+
+const consultarItemEmprestado = (itensEmprestados, item) => itensEmprestados.includes(item);
+
+const hasLimite = (itensEmprestados, limiteMaximoDeItens) => itensEmprestados.length < limiteMaximoDeItens;
+
+function controleDeItens(itensEmprestados, pessoa, item, limiteMaximoDeItens) {
+
+    if (checarMaiorIdade(pessoa) && !consultarItemEmprestado(itensEmprestados, item) && hasLimite(itensEmprestados, limiteMaximoDeItens)) {
+
+        itensEmprestados.push(item);
+        return true;
+    }
+    return false;
+}
+
+
+
+
+
+// ========== Objetos ========== //
+const rafael = {
+    nome: 'Rafael',
+    idade: 2025 - 1992,
+
+    hasMaiorIdade: function () {
+        return this.idade >= 18;
+    }
+};
+
+const milena = {
+    nome: 'Milena',
+    idade: 2025 - 1997,
+
+    hasMaiorIdade: function () {
+        return this.idade >= 18;
+    }
+};
+const george = {
+    nome: 'George',
+    idade: 2025 - 2013,
+
+    hasMaiorIdade: function () {
+        return this.idade >= 18;
+    }
+};
+const dick = {
+    nome: 'Dick',
+    idade: 2025 - 2000,
+
+    hasMaiorIdade: function () {
+        return this.idade >= 18;
+    }
+};
+
+
+
+
+console.log(itensEmprestados, controleDeItens(itensEmprestados, rafael, 'Playstation 5', limiteMaximoDeItens));
+console.log(itensEmprestados, controleDeItens(itensEmprestados, rafael, 'Playstation 5', limiteMaximoDeItens));
+console.log(itensEmprestados, controleDeItens(itensEmprestados, milena, 'Oraganizador de Maquiagem', limiteMaximoDeItens));
+console.log(itensEmprestados, controleDeItens(itensEmprestados, george, 'Patins', limiteMaximoDeItens));
+console.log(itensEmprestados, controleDeItens(itensEmprestados, dick, 'Smart TV', limiteMaximoDeItens));
+
+*/
+
+
+const lampadaInteligente = {
+    ligada: false,
+    corAtual: 'Branca',
+
+    interruptor: function () {
+        if (!this.ligada) {
+            this.ligada = true;
+        }
+        return this.ligada
+            ? 'Lâmpada acesa!'
+            : 'Lâmpada apagada!';
+    },
+
+    alterarCor: function (novaCor) {
+        if (this.ligada === true) {
+            this.corAtual = novaCor;
+        } else {
+            return 'Ligue a lâmpada primeiro!';
+        }
+        return this.corAtual 
+            ? `A nova cor da luz é: (${this.corAtual})`
+            : 'A lâmpada não está acesa!'
+        
+    },
+
+    situacao: function () {
+        return `A lâmpada está ${this.ligada ? 'acesa' : 'apagada'}, cor atual: (${this.corAtual}).`;
+    }
+}
+console.log(lampadaInteligente, lampadaInteligente.interruptor(), lampadaInteligente.alterarCor('Vermelha'), lampadaInteligente.situacao());
