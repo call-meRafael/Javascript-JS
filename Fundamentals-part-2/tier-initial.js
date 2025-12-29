@@ -694,6 +694,10 @@ console.log(elevadorCorporativo.voltarParaTerreo());
 // console.log('lifting weights repetition 9');
 // console.log('lifting weights repetition 10');
 
+
+
+
+// ====================== LOOPS ==== //
 for (let rep = 1; rep <= 10; rep++) {
     console.log(`Lifting weights repetition ${rep}`)
 }
@@ -824,5 +828,8 @@ const bancoDigital = {
     }
 }
 
-
+console.log(bancoDigital);
 console.log(bancoDigital, bancoDigital.processarContas());
+const rafaLoop = {
+    name: 'Rafael'
+}
