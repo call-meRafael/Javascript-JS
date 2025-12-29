@@ -631,3 +631,198 @@ const mochilaDoHeroi = {
 
 }
 console.log(mochilaDoHeroi, mochilaDoHeroi.coletarItem('Poção'), mochilaDoHeroi.usarItem('Poção'), mochilaDoHeroi.coletarItem('Espada Sagrada'), mochilaDoHeroi.coletarItem('Escudo Aegis'), mochilaDoHeroi.coletarItem('Armadura de Cronos'), mochilaDoHeroi.coletarItem('Elmo do Matador de Deuses'), mochilaDoHeroi.coletarItem('Botas Aladas de Rah'));
+
+
+
+// ========== Elevador Corporativo ========= //
+
+const elevadorCorporativo = {
+    andarAtual: 0,
+    totalAndares: 10,
+    emManutencao: false,
+    historicoDeUso: [],
+
+    entrarEmManutencao: function () {
+        this.emManutencao = true; // Ativa o modo de manutenção explicitamente.
+        this.historicoDeUso.length = 0; // Limpa o histórico de uso do elevador.
+        return 'Elevador parado para técnicos.';
+    },
+
+    
+
+
+    irPara: function (andarDestino) {
+        if (this.emManutencao === true) return 'Elevador inoperante!';
+
+        if (andarDestino < 0 || andarDestino > this.totalAndares) {
+            return `Erro: o andar (${andarDestino}) não existe!`;
+        }
+
+        const vaiSubir = andarDestino > this.andarAtual;
+
+        if (andarDestino === this.andarAtual) return 'Você já está neste andar.'
+        this.historicoDeUso.push(this.andarAtual);
+
+        this.andarAtual = andarDestino;
+
+        return vaiSubir ? `Subindo para o andar ${andarDestino}!` : `Descendo para o andar ${andarDestino}!`;
+    },
+
+    voltarParaTerreo: function () {
+        return this.irPara(0);
+    }
+}
+console.log(elevadorCorporativo);
+console.log(elevadorCorporativo.irPara(5));
+console.log(elevadorCorporativo.irPara(8));
+console.log(elevadorCorporativo.irPara(3));
+console.log(elevadorCorporativo.irPara(3));
+console.log(elevadorCorporativo.irPara(1));
+console.log(elevadorCorporativo.irPara(11));
+console.log(elevadorCorporativo.voltarParaTerreo());
+
+
+
+// console.log('lifting weights repetition 1');
+// console.log('lifting weights repetition 2');
+// console.log('lifting weights repetition 3');
+// console.log('lifting weights repetition 4');
+// console.log('lifting weights repetition 5');
+// console.log('lifting weights repetition 6');
+// console.log('lifting weights repetition 7');
+// console.log('lifting weights repetition 8');
+// console.log('lifting weights repetition 9');
+// console.log('lifting weights repetition 10');
+
+for (let rep = 1; rep <= 10; rep++) {
+    console.log(`Lifting weights repetition ${rep}`)
+}
+
+const rafaelArray = [
+    'Rafael',
+    'Araújo',
+    2025 - 1992,
+    'Web developer',
+    ['Coding', 'Gaming', 'Reading'],
+    true
+];
+for (let i = 0; i < rafaelArray.length; i++) {
+    console.log(rafaelArray[i]);
+}
+
+// ========= Lista de Preços ========== //
+const precos = [
+    100,
+    200,
+    300,
+    400,
+    500
+];
+for (let i = 0; i < precos.length; i++) {
+    console.log(`Preço original: (${precos[i]}) e após desconto: (${precos[i] * 0.9})`);
+}
+
+// ========= Caixa Registradora ========== //
+const caixaRegistradora = {
+    precosDeProdutos: [33, 28, 15, 12, 47, 63],
+    valorTotal: 0,
+
+    calcularValorTotal: function () {
+        let somaTemporaria = 0;
+
+        for (let i = 0; i < this.precosDeProdutos.length; i++) {
+            somaTemporaria += this.precosDeProdutos[i];
+        }
+        this.valorTotal = somaTemporaria;
+
+        return this.valorTotal;
+    }
+}
+console.log(caixaRegistradora);
+console.log(caixaRegistradora.calcularValorTotal());
+console.log(caixaRegistradora.calcularValorTotal());
+
+
+// ==================== Contador de Pares ===================== //
+const analisadorNumeros = {
+    numeros: [5, 12, 8, 13, 44, 9, 10],
+    qtdPares: 0,
+    
+
+    contadorDePares: function () {
+        this.qtdPares = 0;
+        
+        for (let i = 0; i < this.numeros.length; i++) {
+            if (this.numeros[i] % 2 === 0) {
+                this.qtdPares++;
+            }
+        }
+        return `Foram encontrados ${this.qtdPares} números pares!`
+    }
+}
+console.log(analisadorNumeros);
+console.log(analisadorNumeros.contadorDePares());
+console.log(analisadorNumeros.contadorDePares());
+
+// ================== Filtro de Spam de E-mails ================= //
+const gerenciadorDeEmails = {
+    emailsRecebidos: [
+        'Reunião amanhã',
+        'Ganhe dinheiro rápido!!!',
+        'Projeto alpha',
+        'Promoção imperdível!',
+        'Almoço de domingo'
+    ],
+
+    lixeiraSpam: [],
+
+    caixaDeEntrada: [],
+
+    organizarEmails: function () {
+        this.lixeiraSpam.length = 0;
+        this.caixaDeEntrada.length = 0;
+
+        for (let i = 0; i < this.emailsRecebidos.length; i++) {
+
+            if (this.emailsRecebidos[i].includes('dinheiro') || this.emailsRecebidos[i].includes('Promoção')) {
+                this.lixeiraSpam.push(this.emailsRecebidos[i]);
+            } else {
+                this.caixaDeEntrada.push(this.emailsRecebidos[i]);
+            }
+            
+        }
+        return 'Emails organizados com sucesso!';
+    }
+}
+console.log(gerenciadorDeEmails);
+// console.log(gerenciadorDeEmails.emailsRecebidos);
+console.log(gerenciadorDeEmails.organizarEmails());
+console.log(gerenciadorDeEmails, gerenciadorDeEmails.organizarEmails());
+
+
+// =================== Banco Digital ======================= //
+const bancoDigital = {
+    clientes: [
+        { nome: 'Ana', saldo: 1000 },
+        { nome: 'Beto', saldo: -50 },
+        { nome: 'Carla', saldo: -200 },
+        { nome: 'Daniel', saldo: 5000 }
+    ],
+
+    devedores: [],
+
+    processarContas: function () {
+        this.devedores.length = 0;
+        for (let i = 0; i < this.clientes.length; i++) {
+            if (this.clientes[i].saldo < 0) {
+                this.devedores.push(this.clientes[i].nome);
+            } else {
+                this.clientes[i].saldo *= 1.1;
+            }
+        }
+        return `Processamento concluído. Há ${this.devedores.length} clientes endividados!`;
+    }
+}
+
+
+console.log(bancoDigital, bancoDigital.processarContas());
