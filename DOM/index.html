@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+    <!-- PRECONNECT FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!--------------------->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivinhe o Número </title>
+    <link rel="shortcut icon" href="./assets/play-games.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles/style.css">
+
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="top-interaction">
+            <button class="btn btn-again">De Novo!</button>
+            <p class="entre">(Entre 1 e 20)</p>
+        </div>
+        <div class="title-content">
+            <h1>Adivinhe meu Número!</h1>
+            <div class="number">?</div>
+        </div>
+    </header>
+    <main>
+        <section class="left">
+            <input type="number" class="guess">
+            <button class="btn-check">Verificar!</button>
+        </section>
+        <section class="right">
+            <p class="message">Comece a Adivinhar...</p>
+            <p class="label-score">
+                Pontuação:
+                <span class="score">20</span>
+            </p>
+            <p class="label-highscore">
+                Recorde:
+                <span class="highscore">0</span>
+            </p>
+        </section>
+    </main>
+
+
+    <script src="app.js"></script>
+</body>
+</html>
