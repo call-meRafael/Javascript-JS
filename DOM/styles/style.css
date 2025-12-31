@@ -164,6 +164,10 @@ main {
         & .right {
             margin-left: 80px;
             grid-area: 2 / 1 / span 1;
+
+            & .hs-message {
+                line-height: 130%;
+            }
         }
     }
 }
