@@ -45,6 +45,7 @@ header {
             color: #222;
             font-size: clamp(2rem, 2vw, 2.5rem);
             border-radius: 2px;
+            text-align: center;
         }
     }
 }
@@ -77,7 +78,9 @@ main {
             text-align: center;
             color: #eee;
             background-color: #222;
+            border-radius: 4px;
             border: #eee solid 3px;
+            box-shadow: 1px 1px 2px hsla(0, 0%, 0%, 0.609);
             outline: none;
             
         }
@@ -153,12 +156,13 @@ main {
         'left'
         'right';
         & .left {
-            margin-left: 30px;
+            margin-left: 42px;
+            
             
             grid-area: 1 / 1 / span 1;
         }
         & .right {
-            margin-left: 50px;
+            margin-left: 80px;
             grid-area: 2 / 1 / span 1;
         }
     }
