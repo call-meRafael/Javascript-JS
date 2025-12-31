@@ -30,7 +30,7 @@ document.querySelector('.btn-check').addEventListener('click', function () {
         if (score > highscore) {
             highscore = score;
             document.querySelector('.highscore').textContent = highscore;
-            document.querySelector('.hs-message').textContent = `Você precisou de ${7 - score} chances para vencer! 🎉`;
+            document.querySelector('.hs-message').textContent = `Você precisou de ${7 - score} chance(s) para vencer! 🎉`;
             
         }
 
