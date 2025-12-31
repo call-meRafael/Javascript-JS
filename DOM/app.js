@@ -1,6 +1,7 @@
 
 const mensagem = document.querySelector('.message');
 let score = 7;
+let highscore = 0;
 
 
 
@@ -25,6 +26,13 @@ document.querySelector('.btn-check').addEventListener('click', function () {
         document.querySelector('body').style.backgroundColor = '#60b347';
         document.querySelector('.guess').style.backgroundColor = '#60b347';
         document.querySelector('.number').style.width = '12rem'
+
+        if (score > highscore) {
+            highscore = score;
+            document.querySelector('.highscore').textContent = highscore;
+            document.querySelector('.hs-message').textContent = `Você precisou de ${7 - score} chances para vencer! 🎉`;
+            
+        }
 
 
         // Se o número digitado for maior que o número secreto
@@ -68,7 +76,7 @@ resetBtn.addEventListener('click', function () {
     
     document.querySelector('.number').textContent = '?';
     document.querySelector('.score').textContent = score;
-    document.querySelector('.highscore').textContent = '0';
+    // document.querySelector('.highscore').textContent = '0';
     document.querySelector('.guess').value = '';
     document.querySelector('body').style.backgroundColor = '#222';
     document.querySelector('.guess').style.backgroundColor = '#222';
