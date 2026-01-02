@@ -828,8 +828,66 @@ const bancoDigital = {
     }
 }
 
-console.log(bancoDigital);
 console.log(bancoDigital, bancoDigital.processarContas());
+// ====================================================== //
+
+// ======================= Rei da Colina ======================= //
+const escolaDeGenios = {
+    alunos: [
+        { nome: 'João', nota: 7 },
+        { nome: 'Maria', nota: 9.5 },
+        { nome: 'Pedro', nota: 6 },
+        { nome: 'Ana', nota: 8.5 }
+    ],
+
+    acharMelhorAluno: function () {
+        let melhorNota = 0;
+        let nomeDoGenio = '';
+
+        for (let i = 0; i < this.alunos.length; i++) {
+            if (this.alunos[i].nota > melhorNota) {
+                melhorNota = this.alunos[i].nota;
+                nomeDoGenio = this.alunos[i].nome;
+            }
+        }
+        return `O aluno mais brilhante da nossa turma é: ${nomeDoGenio}, com nota: ${melhorNota}!`;
+    }
+}
+console.log(escolaDeGenios.acharMelhorAluno());
+// ======================================================== //
+
+
+// ===== Consolidação ============================== //
+const sistemaDeEstoque = {
+    produtos: [
+        { nome: 'Notebook', preco: 5000, quantidade: 10 },
+        { nome: 'Mouse', preco: 120, quantidade: 8 },
+        { nome: 'Monitor 4k', preco: 2000, quantidade: 5 },
+        { nome: 'Teclado Mecânico', preco: 370, quantidade: 11 },
+        { nome: 'Cadeira Gamer', preco: 1480, quantidade: 0 }
+    ],
+
+    calcValorTotalDoEstoque: function () {
+        let valorAcumuladoDeMercadorias = 0;
+        for (let i = 0; i < this.produtos.length; i++) {
+            valorAcumuladoDeMercadorias += this.produtos[i].preco * this.produtos[i].quantidade;
+        }
+        return `O valor total de nosso estoque é de ${valorAcumuladoDeMercadorias.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}!`;
+    },
+
+    listarProdutosEsgotados: function () {
+        let produtosEsgotados = [];
+        for (let i = 0; i < this.produtos.length; i++) {
+            if (this.produtos[i].quantidade === 0) {
+                produtosEsgotados.push(this.produtos[i].nome);
+            }
+        }
+        return `Nosso estoque possui um ou mais produtos esgotados! produto: (${produtosEsgotados})`;
+    }
+}
+console.log(sistemaDeEstoque.calcValorTotalDoEstoque());
+console.log(sistemaDeEstoque.listarProdutosEsgotados());
+//=========================================================//
 
 
 // ============================================= //
