@@ -953,3 +953,36 @@ console.log(calcAvarage([2, 3, 7]));
 console.log(calcAvarage(tips));
 console.log(calcAvarage(totals));
 
+
+const pessoa = { nome: 'Rafael', idade: 33 };
+ 
+pessoa.idade = 34;
+pessoa.cidade = 'Fortaleza';
+console.log(pessoa);
+
+
+const config = { tema: 'Dark', idioma: 'pt-BR' };
+const trocarTema = (obj) => obj.tema = 'Light';
+trocarTema(config);
+console.log(config.tema);
+
+const usuario = {
+    nome: "João",
+    saudar: function() {
+        console.log("Olá, " + this.nome);
+    }
+};
+
+usuario.saudar(); // "Olá, João"
+console.log(usuario);
+
+
+const usuario1 = {
+    nome: "João",
+    saudar: () => {
+        console.log("Olá, " + this.nome);
+    }
+};
+
+usuario.saudar(); // O que será exibido?
+console.log(this);
