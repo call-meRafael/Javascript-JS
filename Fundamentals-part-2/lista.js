@@ -1,2 +1,51 @@
 const lista = document.querySelector('#lista-produtos');
 const btnCarregar = document.querySelector('#btn-carregar');
+
+
+const sistemaDeEstoque = {
+    produtos: [
+        { nome: 'Notebook', preco: 5000, quantidade: 10 },
+        { nome: 'Mouse', preco: 120, quantidade: 8 },
+        { nome: 'Monitor 4k', preco: 2000, quantidade: 5 },
+        { nome: 'Teclado Mecânico', preco: 370, quantidade: 11 },
+        { nome: 'Cadeira Gamer', preco: 1480, quantidade: 0 }
+    ],
+
+    calcValorTotalDoEstoque: function () {
+        let valorAcumuladoDeMercadorias = 0;
+        for (let i = 0; i < this.produtos.length; i++) {
+            valorAcumuladoDeMercadorias += this.produtos[i].preco * this.produtos[i].quantidade;
+        }
+        return `O valor total de nosso estoque é de ${valorAcumuladoDeMercadorias.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}!`;
+    },
+
+    listarProdutosEsgotados: function () {
+        let produtosEsgotados = [];
+        for (let i = 0; i < this.produtos.length; i++) {
+            if (this.produtos[i].quantidade === 0) {
+                produtosEsgotados.push(this.produtos[i].nome);
+            }
+        }
+        if (produtosEsgotados.length === 0) {
+            return 'Estoque cheio!';
+        } else {
+            return `Nosso estoque possui um ou mais produtos esgotados! produto: (${produtosEsgotados})`;
+        }
+    }
+}
+
+
+btnCarregar.addEventListener('click', function () {
+    lista.innerHTML = '';
+    for (let i = 0; i < sistemaDeEstoque.produtos.length; i++) {
+        let produto = sistemaDeEstoque.produtos[i];
+        let tagDoItem = `<li>${produto.nome} - ${produto.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`;
+
+        if (produto.quantidade === 0) {
+            tagDoItem += `<span style="color: crimson; font-weight: bold; margin-left: 10px;">(ESGOTADO)</span>`; 
+        }
+
+        tagDoItem += '</li>';
+        lista.innerHTML += tagDoItem;
+    }
+});
