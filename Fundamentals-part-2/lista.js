@@ -1,5 +1,12 @@
+
 const lista = document.querySelector('#lista-produtos');
 const btnCarregar = document.querySelector('#btn-carregar');
+
+// ======================= //
+// Capturando os dados dos novos produtos 
+
+
+// ======================= //
 
 
 const sistemaDeEstoque = {
@@ -49,3 +56,51 @@ btnCarregar.addEventListener('click', function () {
         lista.innerHTML += tagDoItem;
     }
 });
+
+
+// -----------------------------------------------------------------------//
+
+// Inicialize o objeto com array vazio fora do evento
+const novosProdutos = {
+    produtosRecemAdicionados: []  // Começa vazio
+};
+
+const btnAdd = document.querySelector('#btn-adicionar');
+const listaNovosProdutos = document.querySelector('#novos-produtos');
+
+btnAdd.addEventListener('click', function () {
+    // Capture os valores ATUALIZADOS aqui, dentro do evento
+    const produtoNome = document.querySelector('#campo-nome').value.trim();  // Trim para remover espaços
+    const produtoPreco = Number(document.querySelector('#campo-preco').value);
+    const produtoQtd = Number(document.querySelector('#campo-qtd').value);
+    
+    // Validação simples: não adicione se nome vazio ou valores inválidos
+    if (produtoNome === '' || isNaN(produtoPreco) || isNaN(produtoQtd)) {
+        alert('Preencha todos os campos corretamente!');
+        return;  // Sai da função sem adicionar
+    }
+    
+    // Adicione o novo produto ao array (armazene preco e qtd como numbers)
+    novosProdutos.produtosRecemAdicionados.push({
+        nome: produtoNome,
+        preco: produtoPreco,
+        quantidade: produtoQtd
+    });
+    
+    // Limpe a lista e renderize tudo de novo
+    listaNovosProdutos.innerHTML = '';
+    
+    for (let i = 0; i < novosProdutos.produtosRecemAdicionados.length; i++) {
+        let produtoAdicionado = novosProdutos.produtosRecemAdicionados[i];
+        let listaDinamica = `<li>${produtoAdicionado.nome} - ${produtoAdicionado.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} - ${produtoAdicionado.quantidade}</li>`;
+        listaNovosProdutos.innerHTML += listaDinamica;
+    }
+    
+    // Opcional: Limpe os inputs após adicionar
+    document.querySelector('#campo-nome').value = '';
+    document.querySelector('#campo-preco').value = '';
+    document.querySelector('#campo-qtd').value = '';
+});
+
+console.log(btnAdd);
+

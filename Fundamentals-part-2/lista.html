@@ -5,16 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Estoque</title>
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
         body {
-            background-image: linear-gradient(45deg, #F37335, #FDC830);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+
+            max-width: 90rem;
             min-height: 100vh;
+            margin-inline: auto;
+            padding-block: 3rem;
+            background-color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        #produtos--0 {
+            display: flex;
+            flex-flow: column wrap;
+            align-items: center;
+            gap: 1rem;
+            border: 2px solid #ffffff5a;
+            padding: .5rem;
+            background-image: linear-gradient(45deg, #F37335, #FDC830);
+        }
+
+        #produtos--1 {
+            padding: .5rem;
+            background-image: linear-gradient(45deg, #F37335, #FDC830);
         }
 
         #btn-carregar {
+            flex: 0 0 auto;
             display: inline-block;
             border: none;
             cursor: pointer;
+            max-width: fit-content;
+            
             padding: 0.5rem 0.8rem;
             border-radius: 100px;
             transition: all 0.2s ease-in-out;
@@ -22,7 +52,7 @@
             &:hover {
                 background-color: #222;
                 color: bisque;
-                padding: 0.6rem 0.9rem;
+                transform: scale(1.1);
             }
         }
 
@@ -36,16 +66,33 @@
             
         }
 
+        .btn {
+            padding: .625rem 1rem;
+        }
+
     </style>
 </head>
 <body>
-    <h2>Controle de Estoque</h2>
-    <button id="btn-carregar">
-        Carregar Produtos
-    </button>
-    <ul id="lista-produtos">
+    <section id="produtos--0">
+        <h2>Controle de Estoque</h2>
+        <button id="btn-carregar">
+            Carregar Produtos
+        </button>
+        <ul id="lista-produtos">
+    
+        </ul>
+    </section>
 
-    </ul>
+   <section id="produtos--1">
+        <h3>Novo Produto</h3>
+        <input type="text" id="campo-nome" placeholder="Nome do Produto">
+        <input type="number" id="campo-preco" placeholder="Preço">
+        <input type="number" id="campo-qtd" placeholder="Quantidade">
+        <button id="btn-adicionar">Adicionar ao Estoque</button>
+    
+        <hr> <h3>Estoque Atual</h3>
+        <ul id="novos-produtos"></ul>
+    </section>
 
 
 
