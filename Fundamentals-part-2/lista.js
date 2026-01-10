@@ -7,7 +7,9 @@ const btnCarregar = document.querySelector('#btn-carregar');
 
 
 // ======================= //
-
+function enviarNovosItens() {
+    return sistemaDeEstoque.produtos.push(...novosProdutos.produtosRecemAdicionados);
+}
 
 const sistemaDeEstoque = {
     produtos: [
@@ -102,5 +104,6 @@ btnAdd.addEventListener('click', function () {
     document.querySelector('#campo-qtd').value = '';
 });
 
-console.log(btnAdd);
+
+
 
