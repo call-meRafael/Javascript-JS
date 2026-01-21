@@ -62,47 +62,75 @@ btnCarregar.addEventListener('click', function () {
 
 // -----------------------------------------------------------------------//
 
-// Inicialize o objeto com array vazio fora do evento
 const novosProdutos = {
-    produtosRecemAdicionados: []  // Começa vazio
+    produtosRecemAdicionados: []
 };
 
 const btnAdd = document.querySelector('#btn-adicionar');
 const listaNovosProdutos = document.querySelector('#novos-produtos');
+const btnEnviar = document.querySelector('button[type="submit"]');
 
 btnAdd.addEventListener('click', function () {
-    // Capture os valores ATUALIZADOS aqui, dentro do evento
-    const produtoNome = document.querySelector('#campo-nome').value.trim();  // Trim para remover espaços
+    // armazenando os valores de entrada do usuário
+    // método trim para remover espaços indesejados
+    const produtoNome = document.querySelector('#campo-nome').value.trim(); 
     const produtoPreco = Number(document.querySelector('#campo-preco').value);
     const produtoQtd = Number(document.querySelector('#campo-qtd').value);
     
     // Validação simples: não adicione se nome vazio ou valores inválidos
     if (produtoNome === '' || isNaN(produtoPreco) || isNaN(produtoQtd)) {
         alert('Preencha todos os campos corretamente!');
-        return;  // Sai da função sem adicionar
+        return;
     }
     
-    // Adicione o novo produto ao array (armazene preco e qtd como numbers)
+    // Adicione o novo produto ao array (armazene preço e qquantidade como números)
     novosProdutos.produtosRecemAdicionados.push({
         nome: produtoNome,
         preco: produtoPreco,
         quantidade: produtoQtd
     });
     
-    // Limpe a lista e renderize tudo de novo
+    // Limpa a lista para renderizar novamente
     listaNovosProdutos.innerHTML = '';
-    
-    for (let i = 0; i < novosProdutos.produtosRecemAdicionados.length; i++) {
-        let produtoAdicionado = novosProdutos.produtosRecemAdicionados[i];
-        let listaDinamica = `<li>${produtoAdicionado.nome} - ${produtoAdicionado.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} - ${produtoAdicionado.quantidade}</li>`;
-        listaNovosProdutos.innerHTML += listaDinamica;
+
+    // Renderizar nova lista
+    function renderizarLista (prodtsNovos, listaAlvo) {
+        listaAlvo.innerHTML = '';
+
+        for (let i = 0; i < prodtsNovos.length; i++) {
+
+            const produto = prodtsNovos[i];
+
+            listaAlvo.innerHTML +=  `
+                <li>
+                    ${produto.nome} - ${produto.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} - Quantidade: ${produto.quantidade}
+                    <button 
+                    type="button" 
+                    onclick="removerProduto(${prodtsNovos.indexOf(produto)})"
+                    >Remover
+                    </button>
+                </li>
+            `;
+        }
     }
+    renderizarLista(novosProdutos.produtosRecemAdicionados, listaNovosProdutos);
     
-    // Opcional: Limpe os inputs após adicionar
+    
+    // Limpa os inputs após adicionar
     document.querySelector('#campo-nome').value = '';
     document.querySelector('#campo-preco').value = '';
     document.querySelector('#campo-qtd').value = '';
 });
+
+// Enviar os novos produtos para o Sistema de Estoque
+btnEnviar.addEventListener('click', function () {
+    
+    const produtosNovos = novosProdutos.produtosRecemAdicionados;
+    sistemaDeEstoque.produtos.push(...produtosNovos);
+    listaNovosProdutos.innerHTML = '';
+    novosProdutos.produtosRecemAdicionados = [];
+    return;
+})
 
 
 
