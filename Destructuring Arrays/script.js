@@ -72,13 +72,13 @@ const obj = { a: 23, b: 7, c: 14 };
 console.log(a, b);
 
 
-// Nested objects
+//* Nested objects
 const { fri: { open, close } } = openingHours
 console.log(open, close);
 */
 
 /*
-// desstructuring
+//*! desstructuring
 const arr = [2, 3, 4];
 const a = arr[0];
 const b = arr[1];
@@ -112,3 +112,30 @@ const nested = [2, 4, [5, 6]];
 const [i, , [j, k]] = nested;
 console.log(i, j, k);
 */
+
+
+//========= Spread Operator ==========//
+// Expande um array em todos os seus elementos individualmente
+const arr = [7, 8, 9];
+
+//The hardcoding form
+const newArray = [1, 2, arr[0], arr[1], arr[2]];
+console.log(newArray);
+
+//Using the spread operator
+const optNewArray = [1, 2, ...arr];
+console.log(optNewArray);
+
+// TODO: O spread operator pode ser utilizado em qualque rlugar onde se espera valores separados por vírgula.
+// TODO: Ele não cria variáveis novas, e também não permite expandir um determinado elemento de um array, apenas o todo.
+const newMenu = [...restaurant.mainMenu, 'Gnocci'];
+console.log(newMenu);
+
+const newMenuCopy = [...restaurant.mainMenu];
+
+// TODO:Aqui criamos um novo menu para o restaurant, utilizando o spread operator, unimos o menu principal com o menu de entrada.
+// Ambos os menus são expandidos, mantendo a formatação original dos métodos na estrutura do objeto restaurant.
+////testando
+////testando novamente
+const menu = [...restaurant.mainMenu, ...restaurant.starterMenu];
+console.log(menu);
