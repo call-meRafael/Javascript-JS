@@ -41,46 +41,42 @@ const restaurant = {
   orderPizza: function (mainIngredient, ...otherIngredients) {
     console.log(mainIngredient);
     console.log(otherIngredients);
-  } 
+  },
 };
 
-restaurant.orderDelivery({
-  time: "22:30",
-  address: "Via del Sole, 21",
-  mainIndex: 2,
-  starterIndex: 2,
-});
+restaurant.numGuests = 23;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1);
 
-// // SPREAD OPERATOR, posicionado ao lado DIREITO do operador de atribuição ( = )
-const arr = [1, 2, ...[3, 4, 5]];
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2);
 
-// // REST OPERATOR, posicionado ao lado ESQUERDO do operador de atribuição ( = )
-const [a, b, ...others] = [1, 2, 3, 4, 5];
-console.log(a, b, others);
+console.log('--------AND--------');
 
-const [pizza, , risotto, ...otherFood] = [...restaurant.mainMenu, ...restaurant.starterMenu];
-console.log(pizza, risotto, otherFood);
+console.log(0 && 'Rafael');
+console.log(7 && 'Rafael');
+console.log(0 && 7);
+console.log(0 && 0);
+console.log(0 && '');
+console.log(0 && null);
+console.log(0 && undefined);
 
+console.log('--------OR--------');
 
-//todo: Objects
-const { sat, ...weekdays } = restaurant.openingHours;
-console.log(weekdays);
+console.log(0 || 'Rafael');
+console.log(7 || 'Rafael');
+console.log(0 || 7);
+console.log(0 || 0);
+console.log(0 || '');
+console.log(0 || null);
+console.log(0 || undefined);
 
+console.log('--------NOT--------');
 
-// todo: Functions
-const add = function (...numbers) {
-    let sum = 0;
-    for (let i = 0; i < numbers.length; i++) {
-        sum += numbers[i];
-        console.log(sum);
-    }
- 
-   
+console.log(!0);
+
+if (restaurant.orderPizza) {
+    restaurant.orderPizza('mushrooms', 'spinach');
 }
-add(2, 3);
-add(5, 3, 7, 2);
 
-const x = [23, 5, 7];
-add(...x);
-
-restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
+restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
