@@ -6,6 +6,7 @@ const restaurant = {
   categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
   starterMenu: ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"],
   mainMenu: ["Pizza", "Pasta", "Risotto"],
+  owner,
   openingHours: {
     thu: {
       open: 12,
@@ -52,3 +53,25 @@ for (const [index, element] of menu.entries()) {
   console.log(`${index + 1}: ${element}`);
 }
 // console.log(...menu.entries());
+
+const usuarios = [
+  { id: 1, nome: "Ana", ativo: true, idade: 25 },
+  { id: 2, nome: "Carlos", ativo: false, idade: 30 },
+  { id: 3, nome: "Beatriz", ativo: true, idade: 17 },
+  { id: 4, nome: "Daniel", ativo: true, idade: 40 },
+];
+
+const activeUsers = [];
+
+for (const { ativo, idade, nome } of usuarios) {
+  if (ativo && idade >= 18) {
+    activeUsers.push(nome);
+  }
+}
+console.log(activeUsers);
+
+const owner = {
+    name: 'Rafael',
+};
+console.log(restaurant.owner);
+

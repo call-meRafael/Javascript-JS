@@ -91,8 +91,6 @@ printGoals(...game.scored);
 team1 < team2 && console.log(`${game.team1} is more likely to win!`);
 team2 < team1 && console.log(`${game.team2} is more likely to win!`);
 
-
-
 const usuarios = [
   { id: 1, nome: "Ana", ativo: true, idade: 25 },
   { id: 2, nome: "Carlos", ativo: false, idade: 30 },
@@ -100,12 +98,11 @@ const usuarios = [
   { id: 4, nome: "Daniel", ativo: true, idade: 40 },
 ];
 
-const usuariosAtivosMaiores = [];
+const activeUsers = [];
 
-for (let i = 0; i < usuarios.length; i++) {
-  if (usuarios[i].ativo && usuarios[i].idade >= 18) {
-
-    usuariosAtivosMaiores.push(usuarios[i]);
+for (const { ativo, idade, nome } of usuarios) {
+  if (ativo && idade >= 18) {
+    activeUsers.push(nome);
   }
-};
-console.log(usuariosAtivosMaiores);
+}
+console.log(activeUsers);
