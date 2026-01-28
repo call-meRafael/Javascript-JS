@@ -90,3 +90,22 @@ printGoals(...game.scored);
 // // 7.
 team1 < team2 && console.log(`${game.team1} is more likely to win!`);
 team2 < team1 && console.log(`${game.team2} is more likely to win!`);
+
+
+
+const usuarios = [
+  { id: 1, nome: "Ana", ativo: true, idade: 25 },
+  { id: 2, nome: "Carlos", ativo: false, idade: 30 },
+  { id: 3, nome: "Beatriz", ativo: true, idade: 17 },
+  { id: 4, nome: "Daniel", ativo: true, idade: 40 },
+];
+
+const usuariosAtivosMaiores = [];
+
+for (let i = 0; i < usuarios.length; i++) {
+  if (usuarios[i].ativo && usuarios[i].idade >= 18) {
+
+    usuariosAtivosMaiores.push(usuarios[i]);
+  }
+};
+console.log(usuariosAtivosMaiores);
