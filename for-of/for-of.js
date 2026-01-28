@@ -1,5 +1,9 @@
 "use strict";
 
+const owner = {
+  name: 'Rafael',
+};
+
 const restaurant = {
   name: "Classico Italiano",
   location: "Via Angelo Tavanti 23, Firenze, Italy",
@@ -70,8 +74,6 @@ for (const { ativo, idade, nome } of usuarios) {
 }
 console.log(activeUsers);
 
-const owner = {
-    name: 'Rafael',
-};
-console.log(restaurant.owner);
+
+
 
