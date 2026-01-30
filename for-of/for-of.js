@@ -1,8 +1,4 @@
 "use strict";
-let tart@an =
-let $checkOut = false;
-$checkOut = 1;
-console.log($checkOut);
 
 const owner = {
   name: 'Rafael',
