@@ -106,3 +106,33 @@ for (const { ativo, idade, nome } of usuarios) {
   }
 }
 console.log(activeUsers);
+
+
+// ================ CHALLENGE 2 ======================= \\
+//TODO 1. loop over the game.scored array and print each player name to the console, along with the goal number (Example: "Goal 1: Lewandowski")
+
+//todo 2. Use a loop to calculate the avarage odd and log it to the console (We already studied how to calcukate avarages, you can go check if you don't remember)
+
+//todo 3. Print the 3 odds to the console, but in nice formatted way, exactly like this:
+         // // Odd of victory Bayern Munich: 1.33
+         // // Odd of draw: 3.25
+         // // Odd of victory Borussia Dortmund: 6.5
+
+
+// // 1.
+for (const [goal, player] of game.scored.entries()) {
+  console.log(`Goal ${goal + 1}: ${player}`);
+}
+
+// // 2.
+const odds = Object.values(game.odds);
+let avarage = 0;
+for (const odd of odds) avarage += odd;
+avarage /= odds.length;
+console.log(avarage);
+
+// // 3.
+for (const [ team, odd ] of Object.entries(game.odds)) {
+  const teamStr = team === "x" ? "draw" : `victory ${game[team]}`;
+  console.log(`Odd of ${teamStr} ${odd}:`);
+}
