@@ -107,6 +107,22 @@ for (const { ativo, idade, nome } of usuarios) {
 }
 console.log(activeUsers);
 
+const orderSet = new Set([
+  'Pasta',
+  'Pizza',
+  'Pizza',
+  'Risotto',
+  'Pasta',
+  'Pizza',
+]);
+console.log(orderSet);
+console.log(orderSet.size);
+console.log(orderSet.has('Pizza'));
+console.log(orderSet.has('Bread'));
+orderSet.add('Garlic Bread');
+orderSet.add('Garlic Bread');
+orderSet.delete('Risotto');
+console.log(orderSet);
 
 // ================ CHALLENGE 2 ======================= \\
 //TODO 1. loop over the game.scored array and print each player name to the console, along with the goal number (Example: "Goal 1: Lewandowski")
