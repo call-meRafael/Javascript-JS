@@ -62,3 +62,13 @@ checkIn(flight, rafael);
 //=========================================================\\
 
 // // First Class and High-order functions
+
+const oneWord = function (str) {
+  return str.replace(/ /g, '').toLowerCase();
+}
+
+
+const upperFirstWord = function (str) {
+  const [ first, ...others ] = str.split(' ');
+  return [first.toUpperCase(), ...others].join(' ');
+}
