@@ -14,12 +14,52 @@ const aventureiro = {
         defesa: 85
     },
     inventario: ['Espada Longa', 'Arco Curto de Madeira', 'Poção de Cura', 'Corda'],
+    apresentar() {
+        return `Eu sou ${this.nome}, ${this.classe} de nível ${this.nivel}.`;
+    },
+
+    statusDeBatalha() {
+        const { vida, mana, defesa } = this.status;
+        return `Vida: ${vida} | Mana: ${mana} | Defesa: ${defesa}`;
+    },
+
+    usarItem(item) {
+        if (this.inventario.includes(item)) {
+            return `${this.nome} usou: ${item}`;
+        }
+        return 'Item não encontrado no inventário.';
+    }
 };
+
+const equipamentoLendario = {
+  inventario: ["Andúril, a Chama do Oeste", "Cota de Malha Élfica"],
+  titulo: "Rei de Gondor",
+  nivel: 99,
+};
+
+const heroiLendario = {
+    ...aventureiro,
+    ...equipamentoLendario,
+
+    descreverHeroi() {
+        return `${this.titulo}, ${this.nome} empunha ${this.inventario[0]} em batalha!`;
+    }
+};
+
+
 
 const buffDeBatalha = {
     nivel: 50,
     titulo: 'Campeão do Norte'
 };
+
+console.log(aventureiro.apresentar());
+console.log(aventureiro.statusDeBatalha());
+console.log(aventureiro.usarItem('Poção de Cura'));
+console.log(aventureiro.usarItem('Poção de Mana'));
+console.log(heroiLendario.descreverHeroi());
+console.log(heroiLendario);
+console.log(aventureiro);
 
 //=========================1==========================\\
 const { nome: heroi, classe: tipo } = aventureiro;
@@ -75,3 +115,30 @@ console.log(inventarioAtualizado);
 // TODO 3: O inventário ganhou um novo item: 'Escudo Rúnico'.
 // // Crie 'inventarioAtualizado' com os itens originais + o novo item.
 // // Use spread. Não reatribua o array original.
+
+//=========================================APRESENTAÇÃO========================================//
+// // Evolução do exercício // //
+
+// TODO 1: Crie um método chamado 'apresentar'. Ele deve retornar uma string usando template literal: "Eu sou Aragorn, Patrulheiro de nível 45." Use this para acessar as propriedades. Não use arrow function.
+
+// TODO 2: // TODO 2: Crie um método chamado 'statusDeBatalha'.
+    // // Ele deve retornar: "Vida: 1200 | Mana: 300 | Defesa: 85"
+    // // Use this para acessar o objeto status.
+
+// TODO 3: Crie um método chamado 'usarItem'.
+    // // Ele recebe um parâmetro 'item'.
+    // // Se o item existir no inventário, retorna: "Aragorn usou: Poção de Cura"
+    // // Se não existir, retorna: "Item não encontrado no inventário."
+
+
+//==================================LEGENDARY====================================//
+// // Evolução do exercício // //
+// TODO 1: Crie 'aragornLendario' combinando aventureiro e equipamentoLendario
+// // com spread. O equipamento lendário deve sobrescrever os conflitos.
+
+// TODO 2: Adicione um método 'descreverHeroi' diretamente em 'aragornLendario'
+// // que retorne: "Rei de Gondor Aragorn empunha Andúril em batalha!"
+// // Use this. O nome da arma deve vir do inventário, não hardcoded.
+
+// TODO 3: Prove com console.log que o inventario do aventureiro
+// // original permanece intacto.
