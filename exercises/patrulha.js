@@ -86,6 +86,58 @@ function adicionarGuardiao({
     }
     guardioes = [...guardioes, novoGuardiao];
 
-    console.log(`${nome} foi recrutado para a Patrulha!`);
+    return `${nome} foi recrutado para a Patrulha!`;
 }
-console.log(adicionarGuardiao(novoGuardiao));
+console.log(guardioes);
+console.log(adicionarGuardiao({ nome: 'Hikari Ku', titulo: 'Príncipe Deposto das Terras Orientais', casa: 'Ku', nivel: 45, status: { vida: 800, mana: 150, defesa: 70 }, inventario: ['Ichimonji', 'Armadura Leve do Príncipe de Ku'] }));
+console.log(guardioes);
+
+function removerGuardiao(nome) {
+
+    for (let i = 0; i < guardioes.length; i++) {
+        if (guardioes[i].nome === nome) {
+            guardioes.splice(i, 1);
+        }
+    }
+    return `${nome} foi destituido da Patrulha!`;
+}
+console.log(removerGuardiao());
+console.log(guardioes);
+
+function listarGuardioes() {
+
+    for (const guardiao of guardioes) {
+        console.log("=====  PATRULHA DA NOITE - LISTA DE GUARDIÕES ======");
+        const { nome: nomeGuardiao, titulo: tituloGuardiao, nivel: nivelGuardiao } = guardiao;
+
+        console.log(`${nomeGuardiao} é um ${tituloGuardiao} de nivel ${nivelGuardiao}.`);
+    }
+    return "Lista de guardiões foi exibida!";
+}
+console.log(listarGuardioes());
+
+
+function gerarRelatorio() {
+    console.log("===== RELATÓRIO DA PATRULHA ======");
+
+    const guardioesDoReino = Object.keys(guardioes).length;
+
+    let totalGuardioes = 0;
+    let somaNiveis = 0;
+    let semTitulo = 0;
+
+    for (const relatorioGuardioes of guardioes) {
+        const { nivel: nivelGuardiao, titulo: tituloGuardiao } = relatorioGuardioes;
+        totalGuardioes += guardioesDoReino + 1;
+        somaNiveis += nivelGuardiao;
+        if (tituloGuardiao === 'Sem Título') {
+            semTitulo++;
+        }
+
+    }
+
+    console.log(`Total de Guardiões: ${totalGuardioes}`);
+    console.log(`Soma dos Níveis: ${somaNiveis}`);
+    console.log(`Guardiões sem Título: ${semTitulo}`);
+}
+console.log(gerarRelatorio());
