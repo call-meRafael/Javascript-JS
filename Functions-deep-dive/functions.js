@@ -1,74 +1,62 @@
 "use strict";
 
-// // Default Parameters
-
 const bookings = [];
 
-// ES6 default parameters assigment on numPassengers and price
-// The default values accept any expression that can be evaluated.
-const createBooking = function (
-  flightNum,
-  numPassengers = 1,
-  price = 199 * numPassengers,
-) {
-  // ES5 default parameters assigment
-  // numPassengers = numPassengers || 1;
-  // price = price || 199;
+// On ES6, we can set default parameters directly in the function definition. If the value is not provided by an input, it will be set to the default value seted in the definition.
+// We can also use the value of a previous parameter as part of an expression
+const createBooking = function(
+  flightNum, 
+  numPassengers = 1, 
+  price = 199 * numPassengers) {
+
+  // ES5 syntax for default parameters
+  //numPassengers = numPassengers || 1;
+  //price = price || 199;
+
+  
 
   const booking = {
     flightNum,
     numPassengers,
-    price,
-  };
+    price
+  }
   console.log(booking);
   bookings.push(booking);
-};
+}
 
-createBooking("LH123");
-createBooking("LH123", 2, 800);
-createBooking("LH123", 2);
-createBooking("LH123", undefined, 1000);
+createBooking('LH123');
+createBooking('LH123', 2, 800);
+createBooking('LH123', 2);
+createBooking('LH123', 5);
 
-//==============================================================================\\
+console.log("========================================================================");
 
-const flight = "LH234";
+
+const flight = 'LH234';
 const rafael = {
-  name: "Rafael Araujo",
-  passport: 24739479284,
-};
+  name: 'Rafael Araújo',
+  passport: 123456789,
+}
 
-const checkIn = function (flightNum, passenger) {
-  flightNum = "LH999";
-  passenger.name = "Mr. " + passenger.name;
+const checkIn = function(flightNum, passenger) {
+  flightNum = 'LH999';
+  passenger.name = 'Mr. ' + passenger.name;
 
-  if (passenger.passport === 24739479284) {
-    alert("Check in successful!");
+  if (passenger.passport === 123456789) {
+    console.log('You are checked in!');
   } else {
-    alert("Wrong passport!");
+    console.log('Wrong passport!');
   }
-};
+
+}
 
 checkIn(flight, rafael);
 console.log(flight);
 console.log(rafael);
 
-const newPassport = function (person) {
-  person.passport = Math.trunc(Math.random() * 10000000000);
-};
+const newPassport = function(person) {
+  person.passport = Math.trunc(Math.random() * 1000000000);
+}
 
 newPassport(rafael);
 checkIn(flight, rafael);
-
-//=========================================================\\
-
-// // First Class and High-order functions
-
-const oneWord = function (str) {
-  return str.replace(/ /g, '').toLowerCase();
-}
-
-
-const upperFirstWord = function (str) {
-  const [ first, ...others ] = str.split(' ');
-  return [first.toUpperCase(), ...others].join(' ');
-}
