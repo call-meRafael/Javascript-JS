@@ -82,3 +82,30 @@ const transformer = (str, fn) => {
 console.log();
 transformer('Javascript is the best', upperFirstWord);
 transformer('Javascript is the best', oneWord);
+
+
+
+console.log("=======================EXERCISE==============================================");
+
+const funcaoPrincipal = (callback) => {
+
+  callback(processarNumero(5));
+}
+
+function processarNumero(numero, fn) {
+  if (typeof numero !== 'number') {
+    return 'O valor deve ser um número válido!';
+  }
+
+  if (numero > 0) {
+    console.log(`O dobro do número é: ${numero * 2}`);
+    
+  } else if (numero < 0) {
+    return 'O número não pode ser negativo!';
+  }
+
+  return `${fn(numero)} é o resultado da operação ${fn.name} com o número ${numero}`;
+}
+
+console.log(processarNumero(5));
+console.log(funcaoPrincipal(processarNumero(5)));
