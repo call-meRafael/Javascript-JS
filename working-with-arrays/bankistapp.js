@@ -90,3 +90,13 @@ console.log(arr.slice(-2)); // Neste caso, o método slice() retornará os dois 
 console.log(arr.slice(-1)); // O método slice() retornará o último elemento do array. ['e']. O indice -1 é amplamente utilizado para designar o ultimo elemento de um array.
 
 console.log(arr.slice(1, -2)); // Com um parametro positivo e um negativo, o método slice() retornará os elementos do array a partir do indice start até o indice end. Neste caso, o indice start é 1, e o indice end é -2. O resultado é ['b', 'c', 'd'].
+
+console.log([...arr]); // O operador de espalhamento (spread operator) é uma forma alternativa de criar um novo array com todos os elementos do array original. ['a', 'b', 'c', 'd', 'e']
+
+
+// SPLICE METHOD
+
+const arr2 = ['a', 'b', 'c', 'd', 'e'];
+arr2.splice(-1); // O método splice() é utilizado para remover elementos de um array. Neste caso, o indice -1 indica que o ultimo elemento do array deve ser removido. O resultado é ['a', 'b', 'c', 'd']. Diferentemente do método slice(), o método splice() não retorna um novo array, ele modifica o array raiz original.
+const arr3 = ['j', 'i', 'h', 'g', 'f'];
+arr3.reverse(); // O método reverse() inverte a ordem dos elementos do array, alterando o array //// original
