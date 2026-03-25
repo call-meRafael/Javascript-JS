@@ -98,5 +98,34 @@ console.log([...arr]); // O operador de espalhamento (spread operator) é uma fo
 
 const arr2 = ['a', 'b', 'c', 'd', 'e'];
 arr2.splice(-1); // O método splice() é utilizado para remover elementos de um array. Neste caso, o indice -1 indica que o ultimo elemento do array deve ser removido. O resultado é ['a', 'b', 'c', 'd']. Diferentemente do método slice(), o método splice() não retorna um novo array, ele modifica o array raiz original.
+
+
+// REVERSE METHOD
 const arr3 = ['j', 'i', 'h', 'g', 'f'];
-arr3.reverse(); // O método reverse() inverte a ordem dos elementos do array, alterando o array //// original
+arr3.reverse(); // O método reverse() inverte a ordem dos elementos do array, alterando o array original
+console.log(arr3); // ['f', 'g', 'h', 'i', 'j']
+
+
+// CONCAT METHOD
+const letters = arr.concat(arr3);
+console.log(letters); // O método concat() é utilizado para concatenar dois ou mais arrays, retornando um novo array que contem todos os elementos dos arrays originais. ['a', 'b', 'c', 'd', 'f', 'g', 'h', 'i', 'j']
+
+
+// JOIN METHOD
+console.log(letters.join(' - ')); // O método join() é utilizado para juntar todos os elementos de um array em uma string, utilizando um separador especificado pelo parâmetro.
+
+
+
+// AT METHOD
+
+const testArr = [23, 11, 64];
+// O método at() é uma forma alternativa e moderna de acessar elementos de um array e também de uma string. Ele retorna o valor do elemento especificado pelo índice. O método at() aceita índices positivos e negativos, como o clássico (- 1) para acessar o ultimo elemento de um array.
+console.log(testArr[0]);
+console.log(testArr.at(0));
+
+
+
+console.log("---------------------------//----------------------------------------------------");
+
+// forEach METHOD
+
