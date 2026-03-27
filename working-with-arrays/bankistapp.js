@@ -75,6 +75,7 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
+/*
 // SLICE METHOD
 let arr = ["a", "b", "c", "d", "e"];
 
@@ -130,13 +131,37 @@ for (const [i, movement] of testMovements.entries()) {
   }
 }
 
-
-console.log('-----------------------forEach method-----------------------------');
+console.log(
+  "-----------------------forEach method-----------------------------",
+);
 testMovements.forEach((mov, i) => {
-  
-  const tipo = mov > 0 ? 'deposited' : 'withdrew';
+  const tipo = mov > 0 ? "deposited" : "withdrew";
   const valor = mov > 0 ? mov : Math.abs(mov);
-  
+
   console.log(`Movement ${i + 1}: You ${tipo} ${valor}`);
 });
 
+console.log("-----------------------Exercise 1-----------------------------");
+
+const turma = [
+  { aluno: "Alice", notas: [7, 8.5, 9] },
+  { aluno: "Bruno", notas: [5, 4.5, 6] },
+  { aluno: "Carla", notas: [8, 9, 10] },
+  { aluno: "Diego", notas: [4, 5.5, 5] },
+];
+
+turma.forEach((estudante) => {
+  // Calcula a média das notas dos estudantes
+  const media =
+    (estudante.notas[0] + estudante.notas[1] + estudante.notas[2]) / 3;
+
+  // Com a média calculada, você vai precisar acessar o objeto do estudante e adicionar uma nova propriedade indicando se ele atingiu um determinado critério de aprovação. Por exemplo, se a média for maior ou igual a 7, o estudante é aprovado; caso contrário, ele é reprovado.
+  estudante.status = media >= 7 ? "aprovado(a)" : "reprovado(a)";
+
+  // Por fim, imprima no console uma mensagem para cada aluno com sua nota média e seu status de aprovado ou reprovado.
+  console.log(
+    `O(A) aluno(a) ${estudante.aluno} teve média de ${media.toFixed(1)} e está ${estudante.status}.`,
+  );
+});
+
+*/
