@@ -142,3 +142,39 @@ console.log(inventarioAtualizado);
 
 // TODO 3: Prove com console.log que o inventario do aventureiro
 // // original permanece intacto.
+
+
+
+console.log('--------------------------------------------------');
+
+
+// #1. Crie uma função chamada 'checkDogs' que aceita dois arrays de idades de cães ('dogsJulia' e 'dogsKate'), e retorne o seguinte: 
+// Julia descobriu que os donos do PRIMEIRO e dos DOIS ultimos cães, na verdade, tem gatos, não cães! Portanto, crie uma cópia rasa do array de Julia e remova as idades dos gatos do array copiado. (Porque é uma prática ruim mutar parametros de funções)
+
+
+
+
+const checkDogs = function(dogsJulia, dogsKate) {
+    const dogsJuliaCorrected = dogsJulia.slice();
+    dogsJuliaCorrected.splice(0, 1);
+    dogsJuliaCorrected.splice(-2);
+
+    const dogs = dogsJuliaCorrected.concat(dogsKate);
+    console.log(dogs);
+
+    // "O cão número 1 é um adulto com 5 anos de idade.
+    // "O cão número 2 ainda é um filhote 🐶".
+    dogs.forEach((dog, i) => {
+        if (dog >= 3) {
+            console.log(`O cão número ${i + 1} é um adulto com ${dog} anos de idade.`);
+        } else {
+            console.log(`O cão número ${i + 1} ainda é um filhote 🐶`);
+        }
+
+    });  
+}
+checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+
+
+
+
