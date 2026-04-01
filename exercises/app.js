@@ -177,4 +177,42 @@ checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
 
 
 
+console.log('--------------------exercício map()------------------------------');
 
+// #2. Imagine que estamos trabalhando no sistema de um e-commerce. A equipe de maketing decidiu dar um desconto de 10% em uma lista específica de produtos. Sua missão é gerar a lista atualizada para ser exibida na tela.
+
+const carrinho = [
+  { produto: "Teclado Mecânico", preco: 250 },
+  { produto: "Mouse Gamer", preco: 120 },
+  { produto: "Monitor 24 polegadas", preco: 850 },
+  { produto: "Headset", preco: 199 },
+];
+
+const carrinhoComDesconto = carrinho.map((item, i) => {
+    return `Produto ${i + 1}: ${item.produto} - Preço com desconto: R$${(item.preco * 0.9).toFixed(2)}`;
+});
+console.log(carrinho);
+console.log(carrinhoComDesconto);
+
+
+console.log('--------------------map() 2-----------------------------');
+
+const carrinhoDeCompras = [
+  { id: 1, nome: "Camiseta Básica", preco: 29.9, quantidade: 2 },
+  { id: 2, nome: "Calça Jeans", preco: 89.9, quantidade: 1 },
+  { id: 3, nome: "Tênis Running", preco: 149.9, quantidade: 1 },
+  { id: 4, nome: "Boné Snapback", preco: 39.9, quantidade: 3 },
+];
+
+
+const gerarResumoCarrinho = carrinhoDeCompras.map((item) => {
+    return [
+
+        {
+            nome: item.nome,
+            subtotal: Number(item.preco * item.quantidade).toFixed(2),
+            temFreteGratis: item.preco * item.quantidade >= 100 ? true : false,
+        }
+    ]
+});
+console.log(gerarResumoCarrinho);
