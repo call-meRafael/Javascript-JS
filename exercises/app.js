@@ -218,14 +218,127 @@ const contasBancarias = [
 
 //#1. Use o map() no array para gerar um novo array chamado relatorioContas.
 const relatorioContas = contasBancarias.map((conta, i) => {
-    const saldoTotal = conta.saldo + conta.limite;
-    const situacaoCred = conta.saldo < 0 ? 'Devedor' : 'Regular'
+  const saldoTotal = conta.saldo + conta.limite;
+  const situacaoCred = conta.saldo < 0 ? "Devedor" : "Regular";
 
-    return {
-        titular: `${i + 1 } - ${conta.cliente}`,
-        saldoDisponivel: saldoTotal,
-        situacao: situacaoCred
-    };
-})
+  return {
+    titular: `${i + 1} - ${conta.cliente}`,
+    saldoDisponivel: saldoTotal,
+    situacao: situacaoCred,
+  };
+});
 
 console.log(contasBancarias, relatorioContas);
+
+console.log("-----------------------map() 3-------------------------------");
+
+const inscricoesBrutas = [
+  { nomeCompleto: "mILena ARAUJO", anoNascimento: 1997, ingresso: "vip" },
+  { nomeCompleto: "rafael Araujo", anoNascimento: 1992, ingresso: "normal" },
+  { nomeCompleto: "ROSE mary", anoNascimento: 1960, ingresso: "credencial" },
+  { nomeCompleto: "sônia da Silva", anoNascimento: 1964, ingresso: "vip" },
+  { nomeCompleto: "gEorge DENbrough", anoNascimento: 2015, ingresso: "normal" },
+];
+
+//#1 - Gere um novo array chamado listaCrachas.
+// Extraia as propriedades diretamente nos parametros da função callback do método map().
+const listaCrachas = inscricoesBrutas.map(
+  ({ nomeCompleto, anoNascimento, ingresso }, i) => {
+    // Separação completa do nome compelto do participante para utilizar apenas o primeiro nome.
+    const separarNomes = nomeCompleto.split(" ");
+    const [primeiroNome] = separarNomes;
+    const formatLower = primeiroNome.toLowerCase();
+    const formatacaoFinal =
+      formatLower.charAt(0).toUpperCase() + formatLower.slice(1);
+
+    // Calculo da idade.
+    const idade = Math.abs(anoNascimento - 2026);
+
+    // Para acessar o Lounge Exclusivo, o participante deve ter 18 anos ou mais e  possuir ingresso com tag 'vip' ou 'credencial'. Caso contrário, o acesso será destinado ao setor Geral.
+    const acesso =
+      idade >= 18 && (ingresso === "vip" || ingresso === "credencial")
+        ? "Lounge Exclusivo"
+        : "Área Geral";
+
+    // Dados formatados para o crachá de identificação do evento.
+    return {
+      id: i + 1,
+      nomeCracha: formatacaoFinal,
+      idade: idade,
+      setor: acesso,
+    };
+  },
+);
+console.log(listaCrachas);
+
+console.log("--------------------map() 4------------------------------");
+
+const colaboradoresBrutos = [
+  {
+    nomeCompleto: "mILena ARAUJO",
+    dadosContratos: {
+      cargo: "Desenvolvedora Frontend",
+      salarioBase: 4500,
+    },
+    beneficios: ["Alimentação", "Saúde", "Gympass"],
+  },
+  {
+    nomeCompleto: "rafael ARAUJO",
+    dadosContratos: {
+      cargo: "I.A Powered Desenvolvedor Fullstack",
+      salarioBase: 6800,
+    },
+    beneficios: ["Alimentação", "Saúde"],
+  },
+  {
+    nomeCompleto: "ROSE mary",
+    dadosContratos: {
+      cargo: "Analista de Qualidade",
+      salarioBase: 5000,
+    },
+    beneficios: [
+      "Alimentação",
+      "Saúde",
+      "Gympass",
+      "Estacionamento",
+      "Educação",
+    ],
+  },
+  {
+    nomeCompleto: "sônia SILVA",
+    dadosContratos: {
+      cargo: "Estagiária de T.I",
+      salarioBase: 3800,
+    },
+    beneficios: ["Transporte"],
+  },
+];
+
+//#1 - Através da desestruturação via atribuição, extraia a propriedade nomeCompleto diretamente no map() e guarde todos os dados restantes com o rest operator ( ... ) em uma variável chamada restoDoPerfil.
+
+const perfisAtualizados = colaboradoresBrutos.map(
+  ({ nomeCompleto, ...restoDoPerfil }) => {
+    // Formatação do nome completo para endereço de email
+    const strLower = nomeCompleto.toLowerCase();
+    const separarNomes = strLower.split(" ");
+    const nomeFinal = separarNomes.join(".");
+    const emailADress = nomeFinal.replace("ô", "o") + `@tech.com`;
+    
+
+    // Calculo de aumento salarial cedido pela empresa (15%)
+    const ajusteSalarial = 
+     restoDoPerfil.dadosContratos.salarioBase +=
+     restoDoPerfil.dadosContratos.salarioBase * 0.15;
+
+    
+    // Categorizar benefícios dos colaboradores por meio da checagem de strings contidas no array de benefícios. Se houver 3 ou mais benefícios, a categoria 'Premium' é atribuida, caso contrário, a categoria 'Standard' será atribuida.
+    const checagemBeneficios = restoDoPerfil.beneficios.length >= 3 ? 'Premium' : 'Standard';
+
+    return {
+      nomeFormatado: strLower.charAt(0).toUpperCase() + strLower.slice(1)
+    }
+
+    console.log(emailADress, ajusteSalarial, checagemBeneficios, inicialUpper);
+  },
+);
+console.log(perfisAtualizados);
