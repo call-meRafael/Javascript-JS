@@ -316,37 +316,68 @@ const colaboradoresBrutos = [
 
 //#1 - Através da desestruturação via atribuição, extraia a propriedade nomeCompleto diretamente no map() e guarde todos os dados restantes com o rest operator ( ... ) em uma variável chamada restoDoPerfil.
 
+// Formatação do nome completo para saída desejada.
+const formatarNome = (nomeCompleto) =>
+  nomeCompleto
+    .toLowerCase()
+    .split(" ")
+    .map((nome) => nome.charAt(0).toUpperCase() + nome.slice(1))
+    .join(" ");
+
+// Formatação do nome completo para endereço de email
+const gerarEmail = (nomeCompleto) =>
+  nomeCompleto.toLowerCase().split(" ").join(".").replace("ô", "o") +
+  `@tech.com`; //Aqui utilizei apenas o replace() simples para substituir o acento do nome'Sônia' por 'o' no email, entendo que atraves de uma função auxiliar poderia ser feito um replace() mais robusto.
+
 const perfisAtualizados = colaboradoresBrutos.map(
-  ({ nomeCompleto, ...restoDoPerfil }) => {
-    // Formatação do nome completo para endereço de email
-    const formatarNome = ({ nomeCompleto }) => {
-      
-
-    }
-    console.log(formatarNome(nomeCompleto));
-    // const strLower = nomeCompleto.toLowerCase();
-    // const separarNomes = strLower.split(" ");
-    // const nomeFinal = separarNomes.join(".");
-    // const emailADress = nomeFinal.replace("ô", "o") + `@tech.com`;
-
-    
-
+  ({ nomeCompleto, ...restoDoPerfil }, i) => {
     //Calculo de aumento salarial cedido pela empresa (15%)
     const calcularSalarioAjustado = ({ salarioBase }) => salarioBase * 1.15;
-    
 
-    
-
-    
     // Categorizar benefícios dos colaboradores por meio da checagem de strings contidas no array de benefícios. Se houver 3 ou mais benefícios, a categoria 'Premium' é atribuida, caso contrário, a categoria 'Standard' será atribuida.
-    const checagemBeneficios = restoDoPerfil.beneficios.length >= 3 ? 'Premium' : 'Standard';
+    const checagemBeneficios =
+      restoDoPerfil.beneficios.length >= 3 ? "Premium" : "Standard";
 
     return {
+      idColaborador: i + 1,
       nomeFormatado: formatarNome(nomeCompleto),
-      novoSalario: Math.trunc(calcularSalarioAjustado(restoDoPerfil.dadosContratos)),
-    }
-
-    console.log(emailADress, ajusteSalarial, checagemBeneficios, inicialUpper);
+      emailCorp: gerarEmail(nomeCompleto),
+      cargo: restoDoPerfil.dadosContratos.cargo,
+      incrementoSalarial: "15%",
+      novoSalario: Math.trunc(
+        calcularSalarioAjustado(restoDoPerfil.dadosContratos),
+      ),
+      categoriaBeneficios: checagemBeneficios,
+    };
   },
 );
-console.log(perfisAtualizados, );
+console.log(perfisAtualizados);
+
+console.log("--------------------filter()------------------------------");
+
+const catalogo = [
+  { id: 1, produto: "Camiseta Básica", preco: 50, categoria: "Vestuário" },
+  { id: 2, produto: "Tênis de Corrida", preco: 350, categoria: "Calçados" },
+  { id: 3, produto: "Boné", preco: 40, categoria: "Acessórios" },
+  { id: 4, produto: "Jaqueta de Couro", preco: 250, categoria: "Vestuário" },
+  { id: 5, produto: "Meias", preco: 15, categoria: "Vestuário" },
+];
+
+const produtosPromocao = catalogo.filter(({ categoria, preco }) =>
+  categoria === "Vestuário" && preco > 30
+);
+console.log(produtosPromocao);
+
+console.log('------------------------filter() 2-------------------------');
+
+const usuarios = [
+  { id: 1, nome: "Alice Oliveira", cargo: "Admin", ativo: true },
+  { id: 2, nome: "Bruno Moraes", cargo: "Usuário", ativo: false },
+  { id: 3, nome: "Carla Silva", cargo: "Admin", ativo: true },
+  { id: 4, nome: "Diego Costa", cargo: "Usuário", ativo: true },
+];
+
+// O que o usuário digitou na barra de pesquisa:
+const termoBusca = "OLI";
+
+// Gere um novo array chamado resultadosBusca, o método filter() deve retornar true apenas se o usuário cumprir ambas as condições abaixo:
