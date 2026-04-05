@@ -319,26 +319,34 @@ const colaboradoresBrutos = [
 const perfisAtualizados = colaboradoresBrutos.map(
   ({ nomeCompleto, ...restoDoPerfil }) => {
     // Formatação do nome completo para endereço de email
-    const strLower = nomeCompleto.toLowerCase();
-    const separarNomes = strLower.split(" ");
-    const nomeFinal = separarNomes.join(".");
-    const emailADress = nomeFinal.replace("ô", "o") + `@tech.com`;
+    const formatarNome = ({ nomeCompleto }) => {
+      
+
+    }
+    console.log(formatarNome(nomeCompleto));
+    // const strLower = nomeCompleto.toLowerCase();
+    // const separarNomes = strLower.split(" ");
+    // const nomeFinal = separarNomes.join(".");
+    // const emailADress = nomeFinal.replace("ô", "o") + `@tech.com`;
+
     
 
-    // Calculo de aumento salarial cedido pela empresa (15%)
-    const ajusteSalarial = 
-     restoDoPerfil.dadosContratos.salarioBase +=
-     restoDoPerfil.dadosContratos.salarioBase * 0.15;
+    //Calculo de aumento salarial cedido pela empresa (15%)
+    const calcularSalarioAjustado = ({ salarioBase }) => salarioBase * 1.15;
+    
+
+    
 
     
     // Categorizar benefícios dos colaboradores por meio da checagem de strings contidas no array de benefícios. Se houver 3 ou mais benefícios, a categoria 'Premium' é atribuida, caso contrário, a categoria 'Standard' será atribuida.
     const checagemBeneficios = restoDoPerfil.beneficios.length >= 3 ? 'Premium' : 'Standard';
 
     return {
-      nomeFormatado: strLower.charAt(0).toUpperCase() + strLower.slice(1)
+      nomeFormatado: formatarNome(nomeCompleto),
+      novoSalario: Math.trunc(calcularSalarioAjustado(restoDoPerfil.dadosContratos)),
     }
 
     console.log(emailADress, ajusteSalarial, checagemBeneficios, inicialUpper);
   },
 );
-console.log(perfisAtualizados);
+console.log(perfisAtualizados, );
