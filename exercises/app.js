@@ -379,5 +379,16 @@ const usuarios = [
 
 // O que o usuário digitou na barra de pesquisa:
 const termoBusca = "OLI";
+// const formatStr = (varStr => varStr.toLowerCase())
+
+
+console.log(termoBusca);
 
 // Gere um novo array chamado resultadosBusca, o método filter() deve retornar true apenas se o usuário cumprir ambas as condições abaixo:
+// 1 - O usuário precisa estar com status ativo true
+// 2 - O nome do usuário deve conter o texto armazenado na variável termoBusca
+
+const resultadoBusca = usuarios.filter(( { nome, ativo } ) => 
+  nome.toLowerCase().includes(termoBusca.toLowerCase()) && ativo === true
+);
+console.log(resultadoBusca);
