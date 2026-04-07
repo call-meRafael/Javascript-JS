@@ -82,6 +82,14 @@ const movementsDescriptions = movements.map((mov, i) => {
   return `Movement ${i + 1}: You ${mov > 0 ? "deposited" : "withdrew"} ${Math.abs(mov)}`;
 });
 
+
+const deposits = movements.filter(mov => mov > 0);
+console.log(movements);
+console.log(deposits);
+
+const withdrawls = movements.filter(mov => mov < 0);
+console.log(withdrawls);
+
 /////////////////////////////////////////////////
 
 /*
