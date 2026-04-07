@@ -389,6 +389,7 @@ console.log(termoBusca);
 // 2 - O nome do usuário deve conter o texto armazenado na variável termoBusca
 
 const resultadoBusca = usuarios.filter(( { nome, ativo } ) => 
-  nome.toLowerCase().includes(termoBusca.toLowerCase()) && ativo === true
+  nome.toLowerCase().includes(termoBusca.toLowerCase()) && ativo
 );
 console.log(resultadoBusca);
+
