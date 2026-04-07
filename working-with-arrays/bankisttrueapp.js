@@ -60,7 +60,7 @@ const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
 
 const displayMovements = (movements) => {
-  containerMovements.innerHTML = '';
+  containerMovements.innerHTML = "";
 
   movements.forEach((mov, i) => {
     const type = mov > 0 ? "deposit" : "withdrawal";
@@ -78,5 +78,23 @@ const displayMovements = (movements) => {
 };
 displayMovements(account1.movements);
 
+const createUsernames = (accs) => {
+  accs.forEach((acc) => {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(" ")
+      .map((name) => name[0])
+      .join("");
+  });
+};
 
+const user = "Steven Thomas Williams"; //stw
+// const username = user
+//   .toLowerCase()
+//   .split(" ")
+//   .map(name => name[0])
+//   .join('')
+// ;
+createUsernames(accounts);
+console.log(accounts);
 
