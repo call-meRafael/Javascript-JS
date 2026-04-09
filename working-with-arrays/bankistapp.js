@@ -95,13 +95,25 @@ console.log("-------Reduce method------------------");
 console.log(movements);
 
 // O parâmetro acumulador age como uma 'bola de neve', somando todos os valores de todos os elementos manipulados
-const balance = movements.reduce((acumulator, element) => acumulator + element, 0);
+const balance = movements.reduce(
+  (acumulator, element) => acumulator + element,
+  0,
+);
 console.log(balance);
 
 //Maximum value
-const max = movements.reduce((acc, mov) => acc > mov ? `${acc}` : `${mov}`, movements[0]);
+const max = movements.reduce(
+  (acc, mov) => (acc > mov ? `${acc}` : `${mov}`),
+  movements[0],
+);
 console.log(max);
 
+// Chaining methods
+const totalDepositsUSD = movements
+  .filter((mov) => mov > 0)
+  .map((mov) => mov * eurToUsd)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(Math.trunc(totalDepositsUSD));
 /*
 // SLICE METHOD
 let arr = ["a", "b", "c", "d", "e"];
