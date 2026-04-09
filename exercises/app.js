@@ -363,12 +363,12 @@ const catalogo = [
   { id: 5, produto: "Meias", preco: 15, categoria: "Vestuário" },
 ];
 
-const produtosPromocao = catalogo.filter(({ categoria, preco }) =>
-  categoria === "Vestuário" && preco > 30
+const produtosPromocao = catalogo.filter(
+  ({ categoria, preco }) => categoria === "Vestuário" && preco > 30,
 );
 console.log(produtosPromocao);
 
-console.log('------------------------filter() 2-------------------------');
+console.log("------------------------filter() 2-------------------------");
 
 const usuarios = [
   { id: 1, nome: "Alice Oliveira", cargo: "Admin", ativo: true },
@@ -381,15 +381,34 @@ const usuarios = [
 const termoBusca = "OLI";
 // const formatStr = (varStr => varStr.toLowerCase())
 
-
 console.log(termoBusca);
 
 // Gere um novo array chamado resultadosBusca, o método filter() deve retornar true apenas se o usuário cumprir ambas as condições abaixo:
 // 1 - O usuário precisa estar com status ativo true
 // 2 - O nome do usuário deve conter o texto armazenado na variável termoBusca
 
-const resultadoBusca = usuarios.filter(( { nome, ativo } ) => 
-  nome.toLowerCase().includes(termoBusca.toLowerCase()) && ativo
+const resultadoBusca = usuarios.filter(
+  ({ nome, ativo }) =>
+    nome.toLowerCase().includes(termoBusca.toLowerCase()) && ativo,
 );
 console.log(resultadoBusca);
 
+console.log("---------------Challenge #2-----------------");
+
+// // Crie a função 'calcIdadeMedHumana', que recebe um array de idades de cães e realiza as seguintes ações:
+
+//1 - Calcule a idade canina em anos humanos usando a fórmula: se o cachorro tem 2 ou menos anos de idade, idade humana é igual a 2 * idade canina. Se o o cão tiver mais de 2 anos, idade humana = 16 + idadeCao * 4.
+
+const calcIdadeMedHumana = (idades) => {
+  const idadeHumanos = idades.map((idade) =>
+    idade <= 2 ? 2 * idade : 16 + idade * 4,
+  );
+  
+  const adultos = idadeHumanos.filter(idade => idade >= 18);
+
+  const idadeMed = adultos.reduce((acumulador, idade) => acumulador + idade, 0) / adultos.length;
+
+  return idadeMed;
+};
+calcIdadeMedHumana([5, 2, 4, 1, 15, 8, 3]);
+console.log(calcIdadeMedHumana([5, 2, 4, 1, 15, 8, 3]));
