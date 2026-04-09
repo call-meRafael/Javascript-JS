@@ -78,6 +78,15 @@ const displayMovements = (movements) => {
 };
 displayMovements(account1.movements);
 
+// Mostra o saldo total
+const calcDisplayBalance = (movements) => {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance} €`; 
+};
+console.log(calcDisplayBalance(account1.movements));
+
+
+
 const createUsernames = (accs) => {
   accs.forEach((acc) => {
     acc.username = acc.owner
@@ -89,12 +98,8 @@ const createUsernames = (accs) => {
 };
 
 const user = "Steven Thomas Williams"; //stw
-// const username = user
-//   .toLowerCase()
-//   .split(" ")
-//   .map(name => name[0])
-//   .join('')
-// ;
+
 createUsernames(accounts);
 console.log(accounts);
+
 

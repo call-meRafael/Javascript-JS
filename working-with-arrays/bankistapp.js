@@ -82,15 +82,25 @@ const movementsDescriptions = movements.map((mov, i) => {
   return `Movement ${i + 1}: You ${mov > 0 ? "deposited" : "withdrew"} ${Math.abs(mov)}`;
 });
 
-
-const deposits = movements.filter(mov => mov > 0);
+const deposits = movements.filter((mov) => mov > 0);
 console.log(movements);
 console.log(deposits);
 
-const withdrawls = movements.filter(mov => mov < 0);
+const withdrawls = movements.filter((mov) => mov < 0);
 console.log(withdrawls);
 
 /////////////////////////////////////////////////
+
+console.log("-------Reduce method------------------");
+console.log(movements);
+
+// O parâmetro acumulador age como uma 'bola de neve', somando todos os valores de todos os elementos manipulados
+const balance = movements.reduce((acumulator, element) => acumulator + element, 0);
+console.log(balance);
+
+//Maximum value
+const max = movements.reduce((acc, mov) => acc > mov ? `${acc}` : `${mov}`, movements[0]);
+console.log(max);
 
 /*
 // SLICE METHOD
@@ -182,4 +192,3 @@ turma.forEach((estudante) => {
 });
 
 */
-
