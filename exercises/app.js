@@ -403,12 +403,61 @@ const calcIdadeMedHumana = (idades) => {
   const idadeHumanos = idades.map((idade) =>
     idade <= 2 ? 2 * idade : 16 + idade * 4,
   );
-  
-  const adultos = idadeHumanos.filter(idade => idade >= 18);
 
-  const idadeMed = adultos.reduce((acumulador, idade) => acumulador + idade, 0) / adultos.length;
+  const adultos = idadeHumanos.filter((idade) => idade >= 18);
+
+  const idadeMed =
+    adultos.reduce((acumulador, idade) => acumulador + idade, 0) /
+    adultos.length;
 
   return idadeMed;
 };
 calcIdadeMedHumana([5, 2, 4, 1, 15, 8, 3]);
 console.log(calcIdadeMedHumana([5, 2, 4, 1, 15, 8, 3]));
+
+console.log("-------------------reduce exercise--------------");
+
+//  Gere o valor total do carrinho de compras de um cliente com base no array a seguir
+const carrinhoCompras = [
+  { produto: "Notebook", preco: 4500, quantidade: 1 },
+  { produto: "Mouse sem fio", preco: 150, quantidade: 2 },
+  { produto: "Teclado", preco: 300, quantidade: 1 },
+  { produto: "Monitor", preco: 1200, quantidade: 2 },
+];
+
+// Mostra o valor final das compras de forma melhor formatada.
+const extratoCompra = (carrinho) => {
+  // Manipula os dados contidos no carrinho de compras e processa o valor final
+  const valorTotal = carrinho.reduce(
+    (acumulador, { preco, quantidade }) => preco * quantidade + acumulador,
+    0,
+  );
+
+  // Retorna uma string formatada com o número de produtos e o valor total das compras, utilizando a formatação de moeda brasileira (BRL) para exibir o valor final de forma mais legível e profissional.
+  return `Você possui ${carrinho.length} produtos no carrinho. O valor final de suas compras é de: ${valorTotal.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`;
+};
+
+console.log(extratoCompra(carrinhoCompras));
+
+console.log(
+  "---------------------------Method chaining--------------------------",
+);
+
+// Cenário de problema
+// Você foi encarregado de construir o painel financeiro da empresa. O banco de dados te enviou todas as transações do mês, incluindo as que deram problema.
+
+const transacoes = [
+  { id: 1, cliente: "Milena", status: "Concluída", valorBruto: 1500, taxa: 50 },
+  { id: 2, cliente: "Rafael", status: "Cancelada", valorBruto: 3000, taxa: 0 },
+  { id: 3, cliente: "Rose", status: "Concluída", valorBruto: 5000, taxa: 150 },
+  { id: 4, cliente: "Sônia", status: "Pendente", valorBruto: 800, taxa: 20 },
+  { id: 5, cliente: "George", status: "Concluída", valorBruto: 250, taxa: 10 },
+];
+
+const receitaTotalLiquida = transacoes
+  .filter(({ status }) => status === "Concluída")
+  .map(({ valorBruto, taxa }) => valorBruto - taxa)
+  .reduce((acumulador, itens) => acumulador + itens, 0)
+;
+
+console.log(receitaTotalLiquida);
