@@ -91,6 +91,19 @@ console.log(withdrawls);
 
 /////////////////////////////////////////////////
 
+console.log('-------------find() method------------------');
+console.log(movements.find(mov =>  mov < 0));
+console.log(accounts);
+
+const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+console.log(account);
+
+let conta = [];
+for (let acc of accounts) acc.owner === 'Jessica Davis' ? conta.push(acc) : '';
+console.log(conta);
+
+
+
 console.log("-------Reduce method------------------");
 console.log(movements);
 
