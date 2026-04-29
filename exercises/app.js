@@ -412,6 +412,16 @@ const calcIdadeMedHumana = (idades) => {
 
   return idadeMed;
 };
+console.log('------------------------calcAvarage-------------------------');
+let calcAvarage = ages =>
+  ages
+    .map((age) => (age <= 2 ? 2 * age : 16 + age * 4))
+    .filter((age) => age >= 18)
+    .reduce((acc, age, i, arr) => acc + age / arr.length, 0);
+;
+calcAvarage([5, 2, 4, 1, 15, 8, 3]);
+console.log(calcAvarage([5, 2, 4, 1, 15, 8, 3]));
+
 calcIdadeMedHumana([5, 2, 4, 1, 15, 8, 3]);
 console.log(calcIdadeMedHumana([5, 2, 4, 1, 15, 8, 3]));
 
@@ -457,7 +467,5 @@ const transacoes = [
 const receitaTotalLiquida = transacoes
   .filter(({ status }) => status === "Concluída")
   .map(({ valorBruto, taxa }) => valorBruto - taxa)
-  .reduce((acumulador, itens) => acumulador + itens, 0)
-;
-
+  .reduce((acumulador, itens) => acumulador + itens, 0);
 console.log(receitaTotalLiquida);
