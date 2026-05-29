@@ -2,6 +2,7 @@
 
 const btn = document.querySelector(".btn-country");
 const countriesCountainer = document.querySelector(".countries");
+const existingCountries = document.querySelectorAll(".country");
 
 //////////////////////////////////////////
 // Old way of use async ajax
@@ -98,29 +99,27 @@ const request = new XMLHttpRequest();
 request.open('GET', `https://restcountries.com/v3.1/name/${country}`);
 request.send();
 */
-const capitalizeFirstLetter = (str) => str[0].toUpperCase() + str.slice(1).toLowerCase();
+const capitalizeFirstLetter = (str) =>
+  str[0].toUpperCase() + str.slice(1).toLowerCase();
 
-const renderCountry = function (data, className = '') {
-    if (Array.isArray(data)) {
-        data = data[0]
-    }
+const renderCountry = function (data, className = "") {
+  if (Array.isArray(data)) {
+    data = data[0];
+  }
 
-    const currencies = data.currencies || {};
-    const languages = data.languages || 'Idioma não disponível';
+  const currencies = data.currencies || {};
+  const languages = data.languages || "Idioma não disponível";
 
+  // Object.values() transforma o objeto em um array para acessarmos os valores enumerados, no caso, [0].
+  const currencyObj = Object.values(data.currencies || {})[0];
+  const language = Object.values(data.languages || {})[0];
 
-    // Object.values() transforma o objeto em um array para acessarmos os valores enumerados, no caso, [0].
-    const currencyObj = Object.values(data.currencies || {})[0];
-    const language = Object.values(data.languages || {})[0];
+  // const flag = Object.values(data.flags || {})[0];
+  // const countryName = Object.values(data.name || {})[0];
 
-    // const flag = Object.values(data.flags || {})[0];
-    // const countryName = Object.values(data.name || {})[0];
+  const currencyName = capitalizeFirstLetter(currencyObj.name);
 
-    const currencyName = capitalizeFirstLetter(currencyObj.name);
-
-
-
-    const html = `
+  const html = `
     <article class="country ${className}">
         <img class="country__img" src="${data.flags?.png}" />
         <div class="country__data">
@@ -128,34 +127,48 @@ const renderCountry = function (data, className = '') {
             <h4 class="country__region">${data.region}</h4>
             <p class="country__row"><span>👫</span>${(data.population / 1000000).toFixed(1)}M people</p>
             <p class="country__row"><span>🗣️</span>${language}</p>
-            <p class="country__row"><span>💰</span>${currencyObj.symbol || ''} ${currencyName || ''}</p>
+            <p class="country__row"><span>💰</span>${currencyObj.symbol || ""} ${currencyName || ""}</p>
         </div>
     </article>
     `;
-    countriesCountainer.insertAdjacentHTML('beforeend', html);
-    countriesCountainer.style.opacity = 1;
-}
+  countriesCountainer.insertAdjacentHTML("beforeend", html);
+  countriesCountainer.style.opacity = 1;
+};
 
 // const request = fetch(`https://restcountries.com/v3.1/name/portugal`);
 // console.log(request);
 
 const getCountryData = (country) => {
-    // Country 1
-  fetch(`https://restcountries.com/v3.1/name/${country}`).then(response => response.json())
-    .then(data => {
+  // Country 1
+  fetch(`https://restcountries.com/v3.1/name/${country}`)
+    .then(
+      (response) => response.json()
+    )
+    .then((data) => {
       renderCountry(data[0]);
       const neighbour = data[0].borders?.[0];
 
       if (!neighbour) return;
-      
+
       // Country 2
       return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`);
     })
-    .then(response => response.json())
-    .then(data => renderCountry(data, 'neighbour'))
+    .then((response) => response.json())
+    .then((data) => renderCountry(data, "neighbour"))
+    .catch((err => alert(err)));
 };
-getCountryData('portugal');
+// getCountryData('portugal');
 
-
-const dataSup = fetch(`https://restcountries.com/v3.1/name/argentina`).then(response => response.json());
+const dataSup = fetch(`https://restcountries.com/v3.1/name/argentina`).then(
+  (response) => response.json(),
+);
 console.log(dataSup);
+
+btn.addEventListener("click", function () {
+  if (existingCountries.length >= 2)
+    return console.log("Limite de 2 Países atingido!");
+
+  
+
+  getCountryData("brazil");
+});
