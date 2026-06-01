@@ -108,6 +108,17 @@ body {
   cursor: pointer;
 }
 
+.error-state {
+  border: 2px solid crimson;
+  padding: .5rem;
+  border-radius: .7rem;
+  width: 200px;
+  height: 50px;
+  background-color: bisque;
+  color: crimson;
+  text-align: center;
+}
+
 .images {
   display: flex;
 }

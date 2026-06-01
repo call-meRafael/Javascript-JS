@@ -99,8 +99,23 @@ const request = new XMLHttpRequest();
 request.open('GET', `https://restcountries.com/v3.1/name/${country}`);
 request.send();
 */
+const getJSONData = (url, errorMsg = "Something went wrong!") => {
+  return fetch(url).then((response) => {
+    if (response.ok) {
+      throw new Error(`${errorMsg} (${response.status})`);
+    }
+
+    return response.json();
+  });
+};
+
 const capitalizeFirstLetter = (str) =>
   str[0].toUpperCase() + str.slice(1).toLowerCase();
+
+const renderError = (msg) => {
+  countriesCountainer.insertAdjacentText("beforeend", msg);
+  // countriesCountainer.style.opacity = 1;
+};
 
 const renderCountry = function (data, className = "") {
   if (Array.isArray(data)) {
@@ -132,33 +147,69 @@ const renderCountry = function (data, className = "") {
     </article>
     `;
   countriesCountainer.insertAdjacentHTML("beforeend", html);
-  countriesCountainer.style.opacity = 1;
+  // countriesCountainer.style.opacity = 1;
 };
 
 // const request = fetch(`https://restcountries.com/v3.1/name/portugal`);
 // console.log(request);
 
+// const getCountryData = (country) => {
+//   // Country 1
+//   fetch(`https://restcountries.com/v3.1/name/${country}`, { cache: "no-store" })
+//     .then((response) => {
+//       console.log(response);
+//       if (!response.ok) {
+//         throw new Error(`Country  not found (${response.status})`);
+//       }
+//       return response.json();
+//     })
+//     .then((data) => {
+//       renderCountry(data[0]);
+//       const neighbour = data[0].borders?.[0];
+
+//       if (!neighbour) return;
+
+//       // Country 2
+//       return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`, {
+//         cache: "no-store",
+//       });
+//     })
+//     .then((response) => response.json())
+//     .then((data) => renderCountry(data, "neighbour"))
+//     .catch((err) => {
+//       console.log(`${err} 💥`);
+//       renderError(`Something went wrong 💥💥 ${err.message}. Try again!`);
+//     })
+//     .finally(() => {
+//       countriesCountainer.style.opacity = 1;
+//     });
+// };
+// getCountryData('portugal');
+
 const getCountryData = (country) => {
   // Country 1
-  fetch(`https://restcountries.com/v3.1/name/${country}`)
-    .then(
-      (response) => response.json()
-    )
+
+  getJSONData(`https://restcountries.com/v3.1/name/${country}`, "Country not found")
     .then((data) => {
       renderCountry(data[0]);
       const neighbour = data[0].borders?.[0];
 
-      if (!neighbour) return;
+      if (!neighbour) throw new Error('No neighbour found!');
 
       // Country 2
-      return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`);
+      return getJSONData(`https://restcountries.com/v3.1/alpha/${neighbour}`, "Country not found");
     })
     .then((response) => response.json())
     .then((data) => renderCountry(data, "neighbour"))
-    .catch((err => alert(err)));
-};
-// getCountryData('portugal');
+    .catch((err) => {
+      console.log(`${err} 💥`);
+      renderError(`Something went wrong 💥💥 ${err.message}. Try again!`);
+    })
+    .finally(() => {
+      countriesCountainer.style.opacity = 1;
+    });
 
+};
 const dataSup = fetch(`https://restcountries.com/v3.1/name/argentina`).then(
   (response) => response.json(),
 );
@@ -168,7 +219,5 @@ btn.addEventListener("click", function () {
   if (existingCountries.length >= 2)
     return console.log("Limite de 2 Países atingido!");
 
-  
-
-  getCountryData("brazil");
+  getCountryData("dskajkajsd");
 });
