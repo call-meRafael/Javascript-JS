@@ -3,6 +3,7 @@
 const btn = document.querySelector(".btn-country");
 const countriesCountainer = document.querySelector(".countries");
 const existingCountries = document.querySelectorAll(".country");
+const apiKey = "6a1db4d78c85f733177498bada4ff47";
 
 //////////////////////////////////////////
 // Old way of use async ajax
@@ -114,7 +115,7 @@ const capitalizeFirstLetter = (str) =>
 
 const renderError = (msg) => {
   countriesCountainer.insertAdjacentText("beforeend", msg);
-  // countriesCountainer.style.opacity = 1;
+  countriesCountainer.style.opacity = 1;
 };
 
 const renderCountry = function (data, className = "") {
@@ -147,7 +148,7 @@ const renderCountry = function (data, className = "") {
     </article>
     `;
   countriesCountainer.insertAdjacentHTML("beforeend", html);
-  // countriesCountainer.style.opacity = 1;
+  countriesCountainer.style.opacity = 1;
 };
 
 // const request = fetch(`https://restcountries.com/v3.1/name/portugal`);
@@ -221,3 +222,43 @@ btn.addEventListener("click", function () {
 
   getCountryData("dskajkajsd");
 });
+
+
+
+// Coding Challenge #1
+
+const whereAmI = (lat, lng) => {
+  // const error = new Error("Problem with geocoding");
+
+  fetch(
+    `https://geocode.maps.co/reverse?lat=${lat}&lon=${lng}&api_key=${apiKey}&accept-language=en`,
+  )
+    .then((response) => {
+      if (!response.ok)
+        throw new Error(`${response.status}: ${response.statusText}`);
+      return response.json();
+    })
+    .then((data) => {
+      if (data.error) {
+        const apiMSG =
+          typeof data.error === "object" ? data.error.message : data.error;
+        throw new Error(`API error: ${apiMSG}`);
+      }
+      console.log(data);
+      console.log(`You are in ${data.address.city}, ${data.address.country}`);
+
+      return fetch(
+        `https://restcountries.com/v3.1/name/${data.address.country}`,
+      );
+    })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`${response.status}: ${response.statusText}`);
+      }
+
+      return response.json();
+    })
+    .catch((err) => console.log(err.message));
+};
+
+
