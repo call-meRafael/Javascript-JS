@@ -60,6 +60,7 @@ const renderCountry = function (data, className = "") {
   countriesCountainer.style.opacity = 1;
 };
 
+/*
 const whereAmI = (lat, lng) => {
   // const error = new Error("Problem with geocoding");
 
@@ -100,34 +101,139 @@ btn.addEventListener("click", function () {});
 whereAmI(52.508, 13.381);
 whereAmI(-3.7847731489382377, -38.625072487324985);
 whereAmI(99999999, 99999999999999);
+*/
 
 const lotteryPromise = new Promise(function (resolve, reject) {
-  
-  console.log('Lottery draw is happening 🔮');
+  console.log("Lottery draw is happening 🔮");
   setTimeout(() => {
     if (Math.random() >= 0.5) {
       resolve("You WIN 💰");
     } else {
       reject(new Error("You lost your money 💩"));
     }
-
-  }, 2000)
-
-
+  }, 2000);
 });
 
 lotteryPromise.then((res) => console.log(res)).catch((err) => console.log(err));
 
 //Promisifying setTimeout
 const wait = (seconds) => {
-
   return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
 };
 
-wait(2).then(() => {
-  console.log("I've waited for 2 seconds");
-  return wait(1);
-}).then(() => console.log("I've waited for 1 second"));
+wait(2)
+  .then(() => {
+    console.log("I've waited for 2 seconds");
+    return wait(1);
+  })
+  .then(() => console.log("I've waited for 1 second"));
 
-Promise.resolve('abc').then(x => console.log(x))
-Promise.reject(new Error('abc')).catch(x => console.log(x))
+Promise.resolve("abc").then((x) => console.log(x));
+Promise.reject(new Error("abc")).catch((x) => console.log(x));
+
+navigator.geolocation.getCurrentPosition(
+  (position) => console.log(position),
+  (err) => console.log(err),
+);
+const getPosition = () => {
+  return new Promise((resolve, reject) => {
+    // navigator.geolocation.getCurrentPosition(
+    //   (position) => resolve(position),
+    //   (err) => reject(err)
+    // );
+
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+
+// getPosition().then((pos) => console.log(pos));
+
+const whereAmI = () => {
+  getPosition()
+    .then((pos) => {
+      const { latitude: lat, longitude: lng } = pos.coords;
+
+      return fetch(
+        `https://geocode.maps.co/reverse?lat=${lat}&lon=${lng}&api_key=${apiKey}&accept-language=en`,
+      );
+    })
+    .then((response) => {
+      if (!response.ok)
+        throw new Error(`${response.status}: ${response.statusText}`);
+      return response.json();
+    })
+    .then((data) => {
+      if (data.error) {
+        const apiMSG =
+          typeof data.error === "object" ? data.error.message : data.error;
+        throw new Error(`API error: ${apiMSG}`);
+      }
+      console.log(data);
+      console.log(`You are in ${data.address.city}, ${data.address.country}`);
+
+      return fetch(
+        `https://restcountries.com/v3.1/name/${data.address.country}`,
+      );
+    })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`${response.status}: ${response.statusText}`);
+      }
+
+      return response.json();
+    })
+    .then((data) => renderCountry(data[0]))
+    .catch((err) => console.log(err.message));
+};
+
+btn.addEventListener("click", whereAmI);
+
+/*
+PART 1
+1. Create a function 'createImage' which receives imgPath as an input. This function returns a Promise which creates a new image (use document.createElement('img')) and sets the .src attribute to the provided image path. When the image is done loading, append it to the DOM element with the 'images' class, and resolve the promise. The fulfilled value should be the image element itself. In case there is an error loading the image ('error' event), reject the promise.
+
+
+*/
+const imagesContainer = document.querySelector(".images");
+
+const createImage = (imgPath) => {
+  return new Promise((resolve, reject) => {
+    const img = document.createElement("img");
+    img.src = imgPath;
+
+    img.addEventListener("load", () => {
+      imagesContainer.append(img);
+      resolve(img);
+    });
+    img.addEventListener("error", () => {
+      reject(new Error(`Image failed to load: ${imgPath}`));
+    });
+  });
+};
+
+let currentImage;
+
+createImage("./assets/img-1.jpg")
+  .then((img) => {
+    currentImage = img;
+    console.log(`Image 1 loaded: ${img.src}`);
+
+    return wait(2);
+  })
+  .then(() => {
+    currentImage.style.display = "none";
+
+    return createImage("./assets/img-2.jpg");
+  })
+  .then((img) => {
+    currentImage = img;
+    console.log(`Image 2 loaded: ${img.src}`);
+
+    return wait(2);
+  })
+  .then(() => {
+    currentImage.style.display = "none";
+  })
+  .catch((err) => {
+    console.log(err.message);
+  });
