@@ -44,13 +44,28 @@ fetch("https://api.open5e.com/v1/monsters/")
     // Intercalação de manipulação de Arrays com os dados obtidos da API
     const dragons = data.results.filter((monster) => monster.type === "Dragon");
 
+
     // Intercalação referente ao DIA 2, onde somamos o total de HP dos inimigos determinados pelo procedimento de filtragem. (Nota: A API retorna o hp como number por padrão, decidi explicitamente converter para Number para garantir a consistência, no mundo real, não podemos confiar que os dados da API estejam sempre no formato esperado.)
     const totalHitPoints = dragons.reduce(
       (acc, specEnemy) => acc + Number(specEnemy.hit_points),
       0,
     );
+    
+    // Intercalação referente ao DIA 3. Verifica se o nível de desafio dos inimigos é maior ou igual a 15. Se for, interrompe a execução imediatamente e lança uma mensagem de erro.
+    const highLevelChallenge = data.results.some(({ cr }) => cr >= 15);
+
+    if (highLevelChallenge) {
+      throw new Error("Run! The threat is beyond your limits to take.");
+    }
+    //
     console.log(dragons, totalHitPoints);
     console.log("-------------------DIA 2-------------------");
+
+    return {
+      dragons,
+      totalHitPoints,
+      highLevelChallenge,
+    }
   })
   // Catch básico para lidar com erros de rede ou problemas na resposta da API
   .catch((err) => console.error(err.message));
