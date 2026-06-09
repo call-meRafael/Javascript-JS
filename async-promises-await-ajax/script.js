@@ -262,3 +262,9 @@ const whereAmI = (lat, lng) => {
 };
 
 
+const whereIam = async (country) => {
+  await fetch(`https://restcountries.com/v3.1/name/${country}`, { cache: "no-store" })
+
+}
+
+

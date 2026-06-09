@@ -238,12 +238,28 @@ createImage("./assets/img-1.jpg")
     console.log(err.message);
   });
 
+const getTruePosition = () => {
+  return new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
 
+const whereHaveYouBeen = async (country) => {
+  const pos = await getTruePosition();
+  const { latitude: lat, longitude: lng } = pos.coords;
 
-console.log('-------------------exercise-----------------');
+  const resGeo = await fetch(
+    `https://geocode.maps.co/reverse?lat=${lat}&lon=${lng}&api_key=${apiKey}&accept-language=en`,
+  );
+  const dataGeo = await resGeo.json();
 
-const data = fetch("https://jsonplaceholder.typicode.com/users")
-.then(response => response.json)
-.then(data => console.log(data));
+  const res = await fetch(`https://restcountries.com/v3.1/name/${dataGeo.address.country}`, {
+    cache: "no-store",
+  });
+  const data = await res.json();
+  console.log(data);
+  renderCountry(data[0]);
+};
 
-
+whereHaveYouBeen();
+console.log("FIRST");
