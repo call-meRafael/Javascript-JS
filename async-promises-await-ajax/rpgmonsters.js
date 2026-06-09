@@ -162,3 +162,26 @@ console.log(checkStats);
 // ---------------------------------------- DIA 4----------------------------------//
 
 
+fetch("https://api.open5e.com/v1/monsters/").then((res) => {
+  if (!res.ok) {
+    throw new Error(`Failed to get data: (${res.status}) ${res.statusText}`)
+  }
+  return res.json();
+}).then((data) => {
+  
+  const enemyData = data.results.filter(({ hit_points }) => hit_points >= 50).map(({ name, armor_class }) => {
+    return {
+      enemyName: name,
+      armorClass: armor_class,
+    }
+  }).reduce((acc, monsterArmor, index, filteredArray) => {
+    acc += Number(monsterArmor.armorClass);
+    if (index === filteredArray.length -1) {
+      return acc / filteredArray.length;
+    }
+    return acc;
+  } 
+  , 0);
+  console.log(data);
+  console.log(enemyData);
+}).catch((err => console.log(err.message)));
