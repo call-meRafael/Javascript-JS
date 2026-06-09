@@ -158,3 +158,7 @@ const heroActions = () => {
 heroActions().then((res => console.log(res))).catch(err => console.log(err));
 console.log(checkStats);
 
+
+// ---------------------------------------- DIA 4----------------------------------//
+
+
