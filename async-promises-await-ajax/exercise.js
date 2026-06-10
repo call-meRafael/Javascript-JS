@@ -245,21 +245,52 @@ const getTruePosition = () => {
 };
 
 const whereHaveYouBeen = async (country) => {
-  const pos = await getTruePosition();
-  const { latitude: lat, longitude: lng } = pos.coords;
+  try {
+    const pos = await getTruePosition();
+    const { latitude: lat, longitude: lng } = pos.coords;
+  
+    const resGeo = await fetch(
+      `https://geocode.maps.co/reverse?lat=${lat}&lon=${lng}&api_key=${apiKey}&accept-language=en`,
+    );
+    if (!resGeo.ok) {
+      throw new Error(`Problem getting location data: ${resGeo.status}`);
+    }
 
-  const resGeo = await fetch(
-    `https://geocode.maps.co/reverse?lat=${lat}&lon=${lng}&api_key=${apiKey}&accept-language=en`,
-  );
-  const dataGeo = await resGeo.json();
+    const dataGeo = await resGeo.json();
+  
+    const res = await fetch(`https://restcountries.com/v3.1/name/${dataGeo.address.country}`, {
+      cache: "no-store",
+    });
+    if (!res.ok) {
+      throw new Error(`Problem getting country data: ${res.status}`);
+    }
 
-  const res = await fetch(`https://restcountries.com/v3.1/name/${dataGeo.address.country}`, {
-    cache: "no-store",
-  });
-  const data = await res.json();
-  console.log(data);
-  renderCountry(data[0]);
+    const data = await res.json();
+    console.log(data);
+    renderCountry(data[0]);
+  } catch (err) {
+    console.error(`${err}`);
+    renderError(`💥 ${err.message}`);
+
+    throw err;
+  }
+  
 };
 
 whereHaveYouBeen();
-console.log("FIRST");
+console.log("1: Will get location");
+
+whereHaveYouBeen()
+  .then(city => console.log(`2: ${city}`))
+  .catch(err => console.error(`2: ${err.message} 💥`))
+  .finally(() => console.log("3: Finished getting location"));
+
+(async () => {
+  try {
+    const city = await whereHaveYouBeen();
+    console.log(`2: ${city}`);
+  } catch (error) {
+    console.error(`2: ${error.message} 💥`);
+  }
+  console.log("3: Finished getting location");
+})
