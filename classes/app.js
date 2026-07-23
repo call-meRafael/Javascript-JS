@@ -38,6 +38,7 @@ rose.calcAge();
 
 */
 
+/*
 
 const Car = function (model, speed) {
     this.model = model;
@@ -58,3 +59,20 @@ const car1 = new Car("BMW", 120);
 
 console.log(car1.accelerate(10)); // "BMW going at 130 km/h"
 console.log(car1.brake(20));      // "BMW braking at 110 km/h"
+
+*/
+
+class PersonCl {
+  // 1, constructor method
+  constructor(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  }
+
+  calcAge() {
+    console.log(2026 - this.birthYear);
+  }
+}
+
+const milena = new PersonCl("Milena", 1997);
+console.log(milena);
