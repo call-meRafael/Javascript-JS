@@ -62,6 +62,7 @@ console.log(car1.brake(20));      // "BMW braking at 110 km/h"
 
 */
 
+/*
 class PersonCl {
   // 1, constructor method
   constructor(firstName, birthYear) {
@@ -76,3 +77,54 @@ class PersonCl {
 
 const milena = new PersonCl("Milena", 1997);
 console.log(milena);
+*/
+
+/* ========================================== exercise tier 01 ============== */
+
+class Personagem {
+  constructor(nome, vida) {
+    this.nome = nome;
+    this.vida = vida;
+  }
+
+  atacar() {
+    return `O herói ${this.nome} atacou!`;
+  }
+
+  receberDano(quantidade) {
+    return this.vida -= quantidade;
+  }
+}
+
+const personagem = new Personagem("Klein", 300);
+console.log(personagem.atacar());
+console.log(personagem.receberDano(50));
+
+/* ========================================================================== */
+
+/* ========================================== exercise tier 02 ============== */
+
+class Mago extends Personagem {
+    constructor(nome, vida, mana) {
+        super(nome, vida);
+        this.mana = mana;
+    }
+
+    atacar(custoMana) {
+        if (this.mana >= custoMana) {
+            this.mana -= custoMana;
+            return `O mago ${this.nome} lançou um feitiço! (Mana restante: ${this.mana})`;
+        } else {
+            return `O mago ${this.nome} não tem mana suficiente para lançar o feitiço!`;
+        }
+
+    }
+
+
+}
+
+const mago = new Mago("Rudeus", 450, 100);
+console.log(mago);
+console.log(mago.atacar(10));
+console.log(mago.atacar(10));
+console.log(mago.atacar(10));
