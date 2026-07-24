@@ -79,12 +79,38 @@ const milena = new PersonCl("Milena", 1997);
 console.log(milena);
 */
 
-/* ========================================== exercise tier 01 ============== */
 
+const account = {
+  owner: "Rafael",
+  movements: [200, 530, 120, 300],
+
+  get latest() {
+    return this.movements.slice(-1).pop();
+  },
+
+  set latest(mov) {
+    this.movements.push(mov);
+  },
+};
+
+console.log(account.latest);
+account.latest = 50;
+console.log(account.movements);
+
+
+
+
+
+
+
+
+/* ========================================== exercise tier 01 ============== */
+/*
 class Personagem {
+
   constructor(nome, vida) {
     this.nome = nome;
-    this.vida = vida;
+    this.#vida = vida;
   }
 
   atacar() {
@@ -92,18 +118,19 @@ class Personagem {
   }
 
   receberDano(quantidade) {
-    return this.vida -= quantidade;
+    this.vida -= quantidade;
+    return this.vida;
   }
 }
 
 const personagem = new Personagem("Klein", 300);
 console.log(personagem.atacar());
 console.log(personagem.receberDano(50));
-
+*/
 /* ========================================================================== */
 
 /* ========================================== exercise tier 02 ============== */
-
+/*
 class Mago extends Personagem {
     constructor(nome, vida, mana) {
         super(nome, vida);
@@ -128,3 +155,7 @@ console.log(mago);
 console.log(mago.atacar(10));
 console.log(mago.atacar(10));
 console.log(mago.atacar(10));
+
+*/
+
+
